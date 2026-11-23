@@ -159,7 +159,7 @@
   {
     "id": "tutorial_overlay",
     "name": "First-Time Tutorial Overlay (Level 1)",
-    "purpose": "Teach by doing inside Level 1: build, upgrade, light reveals shadows, start wave, speed. One instruction at a time.",
+    "purpose": "Teach by doing inside Level 1: build only on lit ground, grow light with Lanterns, defend lights from dimming, read the Light meter, upgrade, speed. One instruction at a time.",
     "regions": [
       {
         "zone": "top",
