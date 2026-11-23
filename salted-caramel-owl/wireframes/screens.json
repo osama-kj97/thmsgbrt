@@ -4,15 +4,46 @@
     "name": "Splash / Boot",
     "purpose": "Brand moment while assets load; routes first-launch players to consent + FTUE and returning players to the Hollow Tree hub.",
     "regions": [
-      { "zone": "middle", "elements": [
-        { "type": "icon", "label": "Salted Caramel Owl logo (owl silhouette, amber eyes)", "goto": null, "note": "Eyes blink once; static if Reduce Motion is on" },
-        { "type": "label", "label": "Hollowguard", "goto": null, "note": "Working title; 34pt display type" },
-        { "type": "bar", "label": "Loading - lanterns lighting up", "goto": null, "note": "Progress as a row of 5 lanterns igniting; target < 3 s on mid-tier device" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Tap to begin (first launch)", "goto": "consent", "note": "Whole screen is the tap target once loaded; prototype branch A" },
-        { "type": "button", "label": "Tap to begin (returning player)", "goto": "home", "note": "Prototype branch B; real build routes automatically" }
-      ]}
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "icon",
+            "label": "Salted Caramel Owl logo (owl silhouette, amber eyes)",
+            "goto": null,
+            "note": "Eyes blink once; static if Reduce Motion is on"
+          },
+          {
+            "type": "label",
+            "label": "Hollowguard",
+            "goto": null,
+            "note": "Working title; 34pt display type"
+          },
+          {
+            "type": "bar",
+            "label": "Loading - lanterns lighting up",
+            "goto": null,
+            "note": "Progress as a row of 5 lanterns igniting; target < 3 s on mid-tier device"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Tap to begin (first launch)",
+            "goto": "consent",
+            "note": "Whole screen is the tap target once loaded; prototype branch A"
+          },
+          {
+            "type": "button",
+            "label": "Tap to begin (returning player)",
+            "goto": "home",
+            "note": "Prototype branch B; real build routes automatically"
+          }
+        ]
+      }
     ],
     "annotations": [
       "No input needed before load completes; never block on network for first session (bundle level 1-3 content).",
@@ -24,17 +55,51 @@
     "name": "Privacy & Age Check",
     "purpose": "Store-policy-compliant first-run gate: neutral age screen and analytics/ads consent, in one short step.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Before we take flight", "goto": null, "note": "Title, 22pt" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "list", "label": "Birth year picker (neutral, no default adult value)", "goto": null, "note": "Neutral age screen; under-threshold players get no personalised ads/tracking" },
-        { "type": "card", "label": "Analytics & ads preferences (toggles)", "goto": null, "note": "Plain-language summary; link to full privacy policy" },
-        { "type": "label", "label": "Privacy policy link", "goto": null, "note": "Opens in-app browser" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Continue", "goto": "intro_story", "note": "Primary, full width 358x56pt; iOS ATT system prompt is NOT shown here - deferred until first rewarded-ad offer" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Before we take flight",
+            "goto": null,
+            "note": "Title, 22pt"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "list",
+            "label": "Birth year picker (neutral, no default adult value)",
+            "goto": null,
+            "note": "Neutral age screen; under-threshold players get no personalised ads/tracking"
+          },
+          {
+            "type": "card",
+            "label": "Analytics & ads preferences (toggles)",
+            "goto": null,
+            "note": "Plain-language summary; link to full privacy policy"
+          },
+          {
+            "type": "label",
+            "label": "Privacy policy link",
+            "goto": null,
+            "note": "Opens in-app browser"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Continue",
+            "goto": "intro_story",
+            "note": "Primary, full width 358x56pt; iOS ATT system prompt is NOT shown here - deferred until first rewarded-ad offer"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Exact legal copy and thresholds owned by Economy & LiveOps + compliance; this is layout only.",
@@ -46,16 +111,45 @@
     "name": "Intro Story (3 panels)",
     "purpose": "10-second cold open: the Great Hollow Tree, the shadows, the owls' lanterns. Sets the light-vs-dark hook.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "button", "label": "Skip", "goto": "tutorial_overlay", "note": "Top-right, 44x44pt; secondary placement is intentional" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "card", "label": "Panel: The Tree glows / the shadows creep / owls light the lanterns", "goto": null, "note": "Max 12 words per panel; captions always on" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "icon", "label": "Page dots 1/3", "goto": null, "note": "" },
-        { "type": "button", "label": "Next", "goto": "tutorial_overlay", "note": "Prototype jumps to tutorial; real build steps panels 1-3. Tap anywhere also advances" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Skip",
+            "goto": "tutorial_overlay",
+            "note": "Top-right, 44x44pt; secondary placement is intentional"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "card",
+            "label": "Panel: The Tree's light holds the forest / darkness creeps in and eats the ground / owls carry lanterns to take it back",
+            "goto": null,
+            "note": "Max 12 words per panel; captions always on"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "icon",
+            "label": "Page dots 1/3",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Next",
+            "goto": "tutorial_overlay",
+            "note": "Prototype jumps to tutorial; real build steps panels 1-3. Tap anywhere also advances"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Apple HIG onboarding: fast, fun, optional. Total skippable in one tap.",
@@ -67,21 +161,60 @@
     "name": "First-Time Tutorial Overlay (Level 1)",
     "purpose": "Teach by doing inside Level 1: build, upgrade, light reveals shadows, start wave, speed. One instruction at a time.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "bar", "label": "HUD (dimmed): Tree lives / sap / wave", "goto": null, "note": "Elements unlocked progressively; unused controls hidden, not disabled" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "map", "label": "Level 1 map with dark scrim and spotlight cut-out on build spot", "goto": null, "note": "Only the spotlit target accepts input during a step" },
-        { "type": "icon", "label": "Animated hand pointer on glowing branch spot", "goto": null, "note": "Static arrow when Reduce Motion is on" },
-        { "type": "card", "label": "Coach owl (Elder Bramble): 'Tap the glowing branch to build a Lantern.'", "goto": null, "note": "Speech card placed opposite the target so the thumb never covers it; 17pt text" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Tap glowing spot (step 1)", "goto": "hud_build_open", "note": "Prototype shortcut for tapping the spotlit spot" },
-        { "type": "button", "label": "Skip tutorial", "goto": "hud_default", "note": "Small text button, bottom-left; asks once 'Skip? You can replay in Settings'" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "bar",
+            "label": "HUD (dimmed): Tree lives / sap / wave",
+            "goto": null,
+            "note": "Elements unlocked progressively; unused controls hidden, not disabled"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "map",
+            "label": "Level 1 map with dark scrim and spotlight cut-out on build spot",
+            "goto": null,
+            "note": "Only the spotlit target accepts input during a step"
+          },
+          {
+            "type": "icon",
+            "label": "Animated hand pointer on glowing branch spot",
+            "goto": null,
+            "note": "Static arrow when Reduce Motion is on"
+          },
+          {
+            "type": "card",
+            "label": "Coach owl (Elder Bramble): 'We can only build where there is light. Tap the glowing branch.'",
+            "goto": null,
+            "note": "Speech card placed opposite the target so the thumb never covers it; 17pt text"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Tap glowing spot (step 1)",
+            "goto": "hud_build_open",
+            "note": "Prototype shortcut for tapping the spotlit spot"
+          },
+          {
+            "type": "button",
+            "label": "Skip tutorial",
+            "goto": "hud_default",
+            "note": "Small text button, bottom-left; asks once 'Skip? You can replay in Settings'"
+          }
+        ]
+      }
     ],
     "annotations": [
-      "Step list: 1 Tap spot -> 2 Build Lantern (confirm) -> 3 'Shadows are invisible in the dark' (enemy fades in when it enters lantern light) -> 4 Build Archer Owl in the lit zone -> 5 Start wave -> 6 Upgrade (mid L1) -> 7 Speed 2x (L2) -> 8 Hero ability (L3).",
+      "Step list: 1 Tap a lit spot -> 2 Build a Lantern Owl (confirm) -> 3 Watch the lit ground grow and new spots appear -> 4 Tap a dark spot: 'Too dark to build' -> 5 Start wave; a Dusk Moth dims a lantern and the ground shrinks -> 6 Light meter explained (keep the Tree's light above the danger tick) -> 7 Upgrade (late L1) -> 8 Speed 2x (L2) -> 9 Hero Dawnburst relights ground (L3).",
       "Never more than one new concept per step; no text wall longer than 2 lines.",
       "Tutorial replayable from Settings."
     ]
@@ -91,24 +224,93 @@
     "name": "Home - The Hollow Tree Hub",
     "purpose": "Hub: one-tap path back into play, plus access to owls, research, shop and codex. Diegetic: rooms inside the Great Hollow Tree.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "icon", "label": "Player badge (Keeper level 7)", "goto": null, "note": "Read-only; top-left" },
-        { "type": "label", "label": "Amber sap 1,240", "goto": "shop", "note": "Currency pill; tap opens shop; 44pt tall" },
-        { "type": "button", "label": "Settings (gear)", "goto": "settings", "note": "Top-right, 44x44pt; infrequent action = top" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "map", "label": "Cutaway of the Hollow Tree at night with lit rooms", "goto": null, "note": "Hotspots duplicate tab bar for delight, not necessity" },
-        { "type": "button", "label": "Roost hotspot (owls)", "goto": "roster", "note": "Diegetic shortcut" },
-        { "type": "button", "label": "Lantern Workshop hotspot (research)", "goto": "research", "note": "Badge dot if research affordable" },
-        { "type": "card", "label": "Continue: Level 4 - Mossy Root Bend", "goto": "level_briefing", "note": "Large card in lower-middle (y ~520-600): one tap to the next level" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Owls", "goto": "roster", "note": "Tab 1; 72x56pt" },
-        { "type": "button", "label": "Research", "goto": "research", "note": "Tab 2" },
-        { "type": "button", "label": "PLAY", "goto": "world_map", "note": "Center, raised, 88x72pt - the single primary action" },
-        { "type": "button", "label": "Shop", "goto": "shop", "note": "Tab 4" },
-        { "type": "button", "label": "Codex", "goto": "codex", "note": "Tab 5; badge on new enemy seen" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "icon",
+            "label": "Player badge (Keeper level 7)",
+            "goto": null,
+            "note": "Read-only; top-left"
+          },
+          {
+            "type": "label",
+            "label": "Amber sap 1,240",
+            "goto": "shop",
+            "note": "Currency pill; tap opens shop; 44pt tall"
+          },
+          {
+            "type": "button",
+            "label": "Settings (gear)",
+            "goto": "settings",
+            "note": "Top-right, 44x44pt; infrequent action = top"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "map",
+            "label": "Cutaway of the Hollow Tree at night with lit rooms",
+            "goto": null,
+            "note": "Hotspots duplicate tab bar for delight, not necessity"
+          },
+          {
+            "type": "button",
+            "label": "Roost hotspot (owls)",
+            "goto": "roster",
+            "note": "Diegetic shortcut"
+          },
+          {
+            "type": "button",
+            "label": "Lantern Workshop hotspot (research)",
+            "goto": "research",
+            "note": "Badge dot if research affordable"
+          },
+          {
+            "type": "card",
+            "label": "Continue: Level 4 - Mossy Root Bend",
+            "goto": "level_briefing",
+            "note": "Large card in lower-middle (y ~520-600): one tap to the next level"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Owls",
+            "goto": "roster",
+            "note": "Tab 1; 72x56pt"
+          },
+          {
+            "type": "button",
+            "label": "Research",
+            "goto": "research",
+            "note": "Tab 2"
+          },
+          {
+            "type": "button",
+            "label": "PLAY",
+            "goto": "world_map",
+            "note": "Center, raised, 88x72pt - the single primary action"
+          },
+          {
+            "type": "button",
+            "label": "Shop",
+            "goto": "shop",
+            "note": "Tab 4"
+          },
+          {
+            "type": "button",
+            "label": "Codex",
+            "goto": "codex",
+            "note": "Tab 5; badge on new enemy seen"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Bottom tab bar sits above the 34pt home-indicator inset (bar y 754-810).",
@@ -121,21 +323,75 @@
     "name": "World Map / Level Select",
     "purpose": "Show progress through World 1 (10 levels) and pick a level.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "World 1 - Whispering Roots", "goto": null, "note": "" },
-        { "type": "label", "label": "Stars 17/30", "goto": null, "note": "Read-only" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "map", "label": "Vertical winding root path, levels 1-10 climbing upward", "goto": null, "note": "Vertical scroll only; auto-scrolls so the current level sits at y ~560 (thumb zone)" },
-        { "type": "button", "label": "Level 3 node (3 stars)", "goto": "level_briefing", "note": "Node 64pt; completed = lit lantern + stars" },
-        { "type": "button", "label": "Level 4 node (current, pulsing glow)", "goto": "level_briefing", "note": "Current level: larger 80pt, owl avatar perched" },
-        { "type": "icon", "label": "Level 5-10 nodes (unlit lanterns, locked)", "goto": null, "note": "Locked = unlit + padlock shape, not just greyed" },
-        { "type": "icon", "label": "Level 10 boss node (shadow tendrils)", "goto": null, "note": "" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Back", "goto": "home", "note": "Bottom-left 56x56pt; system back gesture also works" },
-        { "type": "button", "label": "Play Level 4", "goto": "level_briefing", "note": "Primary, bottom-right 220x56pt; always targets the next unbeaten level" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "World 1 - Whispering Roots",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "label",
+            "label": "Stars 17/30",
+            "goto": null,
+            "note": "Read-only"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "map",
+            "label": "Vertical winding root path, levels 1-10 climbing upward",
+            "goto": null,
+            "note": "Vertical scroll only; auto-scrolls so the current level sits at y ~560 (thumb zone)"
+          },
+          {
+            "type": "button",
+            "label": "Level 3 node (3 stars)",
+            "goto": "level_briefing",
+            "note": "Node 64pt; completed = lit lantern + stars"
+          },
+          {
+            "type": "button",
+            "label": "Level 4 node (current, pulsing glow)",
+            "goto": "level_briefing",
+            "note": "Current level: larger 80pt, owl avatar perched"
+          },
+          {
+            "type": "icon",
+            "label": "Level 5-10 nodes (unlit lanterns, locked)",
+            "goto": null,
+            "note": "Locked = unlit + padlock shape, not just greyed"
+          },
+          {
+            "type": "icon",
+            "label": "Level 10 boss node (shadow tendrils)",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "home",
+            "note": "Bottom-left 56x56pt; system back gesture also works"
+          },
+          {
+            "type": "button",
+            "label": "Play Level 4",
+            "goto": "level_briefing",
+            "note": "Primary, bottom-right 220x56pt; always targets the next unbeaten level"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Back lives in the bottom bar (not top-left) so the whole screen is one-thumb.",
@@ -147,19 +403,70 @@
     "name": "Level Briefing (bottom sheet)",
     "purpose": "Pre-level decision point: what's coming, how dark it is, star goals, hero + tower loadout, then start.",
     "regions": [
-      { "zone": "overlay", "elements": [
-        { "type": "sheet", "label": "Briefing sheet (covers lower 70%, map dimmed behind)", "goto": null, "note": "Swipe down or tap scrim to dismiss" },
-        { "type": "label", "label": "Level 4 - Mossy Root Bend", "goto": null, "note": "" },
-        { "type": "card", "label": "Darkness: Moonless (low visibility)", "goto": null, "note": "Icon + word, never color alone; explains that unlit enemies are hidden" },
-        { "type": "list", "label": "Enemies: Shade Crawler, Gloom Moth (NEW), Hollow Beetle", "goto": "codex", "note": "Shape-coded icons; NEW badge; tap opens codex entry" },
-        { "type": "list", "label": "Star goals: Win / Tree >= 15 lives / Win with <= 6 towers", "goto": null, "note": "" },
-        { "type": "card", "label": "Hero: Ember the Barn Owl (change)", "goto": "roster", "note": "Hero slot" },
-        { "type": "list", "label": "Tower loadout (equipped slots)", "goto": "research", "note": "Shows equipped towers; tap a slot to view upgrades" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Back", "goto": "world_map", "note": "Secondary, 56x56pt, bottom-left" },
-        { "type": "button", "label": "Defend the Tree!", "goto": "hud_default", "note": "Primary, 270x64pt, bottom-right" }
-      ]}
+      {
+        "zone": "overlay",
+        "elements": [
+          {
+            "type": "sheet",
+            "label": "Briefing sheet (covers lower 70%, map dimmed behind)",
+            "goto": null,
+            "note": "Swipe down or tap scrim to dismiss"
+          },
+          {
+            "type": "label",
+            "label": "Level 4 - Mossy Root Bend",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "card",
+            "label": "Darkness pressure: High - starts 45% lit, darkness creeps every 20s",
+            "goto": null,
+            "note": "Icon + word + number, never color alone; previews the starting lit/dark territory on the dimmed map behind the sheet"
+          },
+          {
+            "type": "list",
+            "label": "Enemies: Murk Crawler, Dusk Moth (NEW), Hollow Beetle",
+            "goto": "codex",
+            "note": "Shape-coded icons; NEW badge; each shows a light-interaction glyph (snuffs lights / immune in dark); tap opens codex"
+          },
+          {
+            "type": "list",
+            "label": "Star goals: Win / Tree >= 15 lives / Win with <= 6 towers",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "card",
+            "label": "Hero: Ember the Barn Owl (change)",
+            "goto": "roster",
+            "note": "Hero slot"
+          },
+          {
+            "type": "list",
+            "label": "Tower loadout (equipped slots)",
+            "goto": "research",
+            "note": "Shows equipped towers; tap a slot to view upgrades"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "world_map",
+            "note": "Secondary, 56x56pt, bottom-left"
+          },
+          {
+            "type": "button",
+            "label": "Defend the Tree!",
+            "goto": "hud_default",
+            "note": "Primary, 270x64pt, bottom-right"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Bottom sheet keeps every control inside the thumb zone; the dimmed map above gives context.",
@@ -171,59 +478,225 @@
     "name": "In-Game HUD - Default (build phase / mid-wave)",
     "purpose": "Core play view: maximum playfield, read-only status at top, all frequent actions in the bottom tray.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "button", "label": "Pause", "goto": "pause", "note": "Top-left 44x44pt; deliberately out of the thumb arc to avoid accidental pauses" },
-        { "type": "label", "label": "Tree 20 (heart-leaf icon)", "goto": null, "note": "Lives; flashes outline (not just red) when hit" },
-        { "type": "label", "label": "Sap 150", "goto": null, "note": "Amber drop icon + number, 17pt bold tabular numerals" },
-        { "type": "label", "label": "Wave 3/12", "goto": null, "note": "Top-right" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "map", "label": "Portrait lane map: enemies enter top, path snakes down to the Hollow Tree at bottom", "goto": null, "note": "Fits one screen, no pan/zoom. Playfield y 115-650. Darkness overlay; lantern light pools reveal enemies" },
-        { "type": "button", "label": "Empty build spot (branch nest)", "goto": "hud_build_open", "note": "Visual 40pt, hit area 64pt; tap snaps to nearest spot within 48pt" },
-        { "type": "button", "label": "Existing tower (Archer Owl L2)", "goto": "hud_tower_selected", "note": "Tap to select" },
-        { "type": "icon", "label": "Lantern light radius (soft dashed ring)", "goto": null, "note": "Visible light boundary; enemies outside are silhouettes/hidden" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Hero ability: Ember's Flare (cooldown ring)", "goto": "hud_ability_target", "note": "72x72pt, bottom-left; cooldown shown as ring + seconds number" },
-        { "type": "button", "label": "Start next wave / Call early (+sap)", "goto": "hud_wave_incoming", "note": "Primary 160x64pt, center" },
-        { "type": "button", "label": "Speed 1x / 2x", "goto": null, "note": "Toggle 64x64pt, bottom-right; label shows current state as text" },
-        { "type": "button", "label": "(Proto) Win level", "goto": "victory", "note": "Prototype-only debug link" },
-        { "type": "button", "label": "(Proto) Lose level", "goto": "defeat", "note": "Prototype-only debug link" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Pause",
+            "goto": "pause",
+            "note": "Top-left 44x44pt; deliberately out of the thumb arc to avoid accidental pauses"
+          },
+          {
+            "type": "label",
+            "label": "Tree 20 (heart-leaf icon)",
+            "goto": null,
+            "note": "Lives; flashes outline (not just red) when hit"
+          },
+          {
+            "type": "label",
+            "label": "Sap 150",
+            "goto": null,
+            "note": "Amber drop icon + number, 17pt bold tabular numerals"
+          },
+          {
+            "type": "label",
+            "label": "Wave 3/12",
+            "goto": null,
+            "note": "Top-right"
+          },
+          {
+            "type": "bar",
+            "label": "Light meter: 62% lit, trend down arrow (darkness gaining)",
+            "goto": null,
+            "note": "Full-width 12pt bar on row 2 of the status strip (y 107-131). Lit share = warm solid fill with sun-glyph end cap; dark share = hatched fill with moon glyph. Numeric % + trend arrow, threshold tick at 25% ('Tree in danger'). Edge pulses when darkness gains (static when Reduce Motion is on)"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "map",
+            "label": "Portrait lane map: enemies enter top, path snakes down to the Hollow Tree at bottom",
+            "goto": null,
+            "note": "Fits one screen, no pan/zoom. Playfield y 131-650. Ground is territory: lit ground vs dark ground (see legend annotations)"
+          },
+          {
+            "type": "button",
+            "label": "Lit build spot (on lit ground)",
+            "goto": "hud_build_open",
+            "note": "Solid outline + small sun glyph + brighter ground; visual 40pt, hit area 64pt; tap snaps to nearest spot within 48pt"
+          },
+          {
+            "type": "icon",
+            "label": "Dark build spot (on dark ground, not buildable)",
+            "goto": null,
+            "note": "Dashed outline + moon glyph over hatched ground; tap shows toast 'Too dark - extend light with a Lantern Owl'"
+          },
+          {
+            "type": "button",
+            "label": "Existing tower (Archer Owl L2)",
+            "goto": "hud_tower_selected",
+            "note": "Tap to select"
+          },
+          {
+            "type": "icon",
+            "label": "Light frontier line (edge between lit and dark ground)",
+            "goto": null,
+            "note": "Bright solid line; small chevrons point toward the side that is advancing; luminance-based, so it holds up in every color-vision mode"
+          },
+          {
+            "type": "icon",
+            "label": "Dimmed lantern warning (lantern being snuffed by an enemy)",
+            "goto": null,
+            "note": "Lantern icon with draining ring + '!' badge at the tower; ground it supports will turn dark when the ring empties"
+          },
+          {
+            "type": "toast",
+            "label": "Too dark to build here - extend light with a Lantern Owl",
+            "goto": null,
+            "note": "Shown when a dark spot is tapped; 2s, bottom of playfield above the tray"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Hero ability: Ember's Dawnburst (cooldown ring)",
+            "goto": "hud_ability_target",
+            "note": "72x72pt, bottom-left; cooldown shown as ring + seconds number"
+          },
+          {
+            "type": "button",
+            "label": "Start next wave / Call early (+sap)",
+            "goto": "hud_wave_incoming",
+            "note": "Primary 160x64pt, center"
+          },
+          {
+            "type": "button",
+            "label": "Speed 1x / 2x",
+            "goto": null,
+            "note": "Toggle 64x64pt, bottom-right; label shows current state as text"
+          },
+          {
+            "type": "button",
+            "label": "(Proto) Win level",
+            "goto": "victory",
+            "note": "Prototype-only debug link"
+          },
+          {
+            "type": "button",
+            "label": "(Proto) Lose level",
+            "goto": "defeat",
+            "note": "Prototype-only debug link"
+          }
+        ]
+      }
     ],
     "annotations": [
-      "Layout bands on 390x844: safe top 0-59, status strip 59-115, playfield 115-650, tray 650-810, home indicator 810-844.",
+      "Layout bands on 390x844: safe top 0-59, status strip 59-131 (row 1 icons, row 2 light meter), playfield 131-650, tray 650-810, home indicator 810-844.",
       "Tray layout mirrors in Left-Hand mode (Settings).",
       "Status strip is read-only except Pause: nothing frequent lives above y 460.",
-      "Game Designer constraint: build spots should sit within y 200-640; spots above y 200 get a larger 72pt hit area."
+      "Game Designer constraint: build spots should sit within y 200-640; spots above y 200 get a larger 72pt hit area.",
+      "Lit vs dark encoding (colorblind-safe, three redundant channels): 1) luminance - lit ground +40% brightness vs dark; 2) texture - dark ground carries a slow diagonal hatch (static under Reduce Motion); 3) glyph - spots show sun vs moon glyph and solid vs dashed outline. Hue (warm amber vs cool indigo) is decoration only.",
+      "Owls fight in the dark: placed towers keep working on dark ground but cannot be built, upgraded or relit there; a moon glyph on the tower base marks 'in darkness'."
     ]
   },
   {
     "id": "hud_build_open",
     "name": "In-Game HUD - Build Menu Open",
-    "purpose": "Choose and confirm a tower for the selected spot without fat-finger errors: select spot -> pick card (preview) -> confirm.",
+    "purpose": "Choose and confirm a tower for a lit spot without fat-finger errors: select spot -> pick card (preview) -> confirm.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Sap 150", "goto": null, "note": "Pulses when a card's cost is previewed" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "map", "label": "Map with selected spot ringed; ghost tower + range ring + light radius preview", "goto": null, "note": "Preview is drawn on the map, never under the finger, because the finger is down in the tray" },
-        { "type": "label", "label": "Spot B3 - in light / in dark tag", "goto": null, "note": "Tells the player if the spot is lit; key to the light-vs-dark hook" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "sheet", "label": "Build tray (replaces action bar, slides up 160pt)", "goto": null, "note": "Opaque plate behind cards for contrast" },
-        { "type": "card", "label": "Lantern Owl - 60 sap (reveals, slows)", "goto": null, "note": "Card 64x88pt; tap = preview; card flips to green CONFIRM state in the same position" },
-        { "type": "card", "label": "Archer Owl - 70 sap", "goto": null, "note": "" },
-        { "type": "card", "label": "Thornspitter - 90 sap", "goto": null, "note": "" },
-        { "type": "card", "label": "Moonbell - 120 sap (locked: not enough sap)", "goto": null, "note": "Unaffordable = dimmed + lock icon + 'need 120'; still previewable" },
-        { "type": "button", "label": "Confirm build (70 sap)", "goto": "hud_default", "note": "Second tap on the same card = confirm; experts can double-tap" },
-        { "type": "button", "label": "Cancel (X)", "goto": "hud_default", "note": "48x48pt; tapping empty map also cancels" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Sap 150",
+            "goto": null,
+            "note": "Pulses when a card's cost is previewed"
+          },
+          {
+            "type": "bar",
+            "label": "Light meter (preview: 62% -> 70% lit)",
+            "goto": null,
+            "note": "Shows the territory gain of the previewed Lantern card"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "map",
+            "label": "Map with selected lit spot ringed; ghost tower + range ring; Lantern-type cards also preview the lit ground they will add (new spots appear in ghost)",
+            "goto": null,
+            "note": "Preview is drawn on the map, never under the finger, because the finger is down in the tray"
+          },
+          {
+            "type": "label",
+            "label": "Spot B3 - LIT (sun glyph) - stays lit while Lantern L2 at B1 burns",
+            "goto": null,
+            "note": "Tells the player which light source keeps the spot buildable, so they know what to protect"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "sheet",
+            "label": "Build tray (replaces action bar, slides up 160pt)",
+            "goto": null,
+            "note": "Opaque plate behind cards for contrast"
+          },
+          {
+            "type": "card",
+            "label": "Lantern Owl - 60 sap (claims light: +2 build spots)",
+            "goto": null,
+            "note": "Card 64x88pt; tap = preview; card flips to green CONFIRM state in the same position"
+          },
+          {
+            "type": "card",
+            "label": "Archer Owl - 70 sap",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "card",
+            "label": "Thornspitter - 90 sap",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "card",
+            "label": "Moonbell - 120 sap (locked: not enough sap)",
+            "goto": null,
+            "note": "Unaffordable = dimmed + lock icon + 'need 120'; still previewable"
+          },
+          {
+            "type": "button",
+            "label": "Confirm build (70 sap)",
+            "goto": "hud_default",
+            "note": "Second tap on the same card = confirm; experts can double-tap"
+          },
+          {
+            "type": "button",
+            "label": "Cancel (X)",
+            "goto": "hud_default",
+            "note": "48x48pt; tapping empty map also cancels"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Chosen over a radial ring: radial at the tap point is covered by the thumb, clips at screen edges and puts choices in the hard-to-reach top half of the map.",
       "Optional setting 'Slow time while building' (default ON for first 3 levels) drops speed to 0.25x while the tray is open.",
-      "Haptic light tick on preview, medium on confirm."
+      "Haptic light tick on preview, medium on confirm.",
+      "The tray only opens on lit spots; dark spots never open it (toast instead). This keeps the 'light is territory' rule legible through input."
     ]
   },
   {
@@ -231,22 +704,87 @@
     "name": "In-Game HUD - Tower Selected (upgrade / sell)",
     "purpose": "Inspect a tower, upgrade it, change targeting or sell it - with safe confirmation for the destructive action.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Sap 210", "goto": null, "note": "" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "map", "label": "Map with selected tower: range ring solid, upgrade preview ring dashed", "goto": null, "note": "Other towers dimmed 30%" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "sheet", "label": "Tower panel", "goto": null, "note": "Same height as build tray for spatial consistency" },
-        { "type": "label", "label": "Archer Owl - Level 2 (pips 2/3)", "goto": null, "note": "" },
-        { "type": "list", "label": "Stats: Damage 12 -> 18, Range 3.0 -> 3.4, Sees in dark: yes", "goto": null, "note": "Delta shown with arrow + number, not color only" },
-        { "type": "button", "label": "Upgrade - 110 sap", "goto": "hud_default", "note": "Primary 180x64pt; two-tap (preview then confirm) like build" },
-        { "type": "button", "label": "Target: First / Strong / Close / Lit", "goto": null, "note": "Cycles on tap; 'Lit' = prefer revealed enemies" },
-        { "type": "button", "label": "Sell +84 (hold)", "goto": "hud_default", "note": "Hold-to-confirm 0.6s with filling ring; far side from Upgrade; 3s Undo toast after sell" },
-        { "type": "card", "label": "Tier 3 branch: Hawkeye / Volley (shown at max level)", "goto": null, "note": "Two big cards replace the Upgrade button at the branch point" },
-        { "type": "button", "label": "Close (X)", "goto": "hud_default", "note": "" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Sap 210",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "map",
+            "label": "Map with selected tower: range ring solid, upgrade preview ring dashed",
+            "goto": null,
+            "note": "Other towers dimmed 30%"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "sheet",
+            "label": "Tower panel",
+            "goto": null,
+            "note": "Same height as build tray for spatial consistency"
+          },
+          {
+            "type": "label",
+            "label": "Archer Owl - Level 2 (pips 2/3)",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Stats: Damage 12 -> 18, Range 3.0 -> 3.4, Ground: LIT (sun glyph)",
+            "goto": null,
+            "note": "Delta shown with arrow + number, not color only"
+          },
+          {
+            "type": "button",
+            "label": "Upgrade - 110 sap",
+            "goto": "hud_default",
+            "note": "Primary 180x64pt; two-tap (preview then confirm). Disabled with moon glyph + 'Relight ground to upgrade' if the tower stands in darkness"
+          },
+          {
+            "type": "button",
+            "label": "Relight - 40 sap (Lantern towers only)",
+            "goto": "hud_default",
+            "note": "Restores a dimmed lantern; shown only when the lantern ring is draining"
+          },
+          {
+            "type": "button",
+            "label": "Target: First / Strong / Close / Snuffer",
+            "goto": null,
+            "note": "Cycles on tap; 'Snuffer' = prioritise enemies currently dimming a light"
+          },
+          {
+            "type": "button",
+            "label": "Sell +84 (hold)",
+            "goto": "hud_default",
+            "note": "Hold-to-confirm 0.6s with filling ring; far side from Upgrade; 3s Undo toast after sell"
+          },
+          {
+            "type": "card",
+            "label": "Tier 3 branch: Hawkeye / Volley (shown at max level)",
+            "goto": null,
+            "note": "Two big cards replace the Upgrade button at the branch point"
+          },
+          {
+            "type": "button",
+            "label": "Close (X)",
+            "goto": "hud_default",
+            "note": ""
+          }
+        ]
+      }
     ],
     "annotations": [
       "Sell and Upgrade are separated by >= 120pt to prevent slip errors.",
@@ -258,20 +796,75 @@
     "name": "In-Game HUD - Wave Incoming",
     "purpose": "Warn what is coming, from where, and when; let the player call the wave early for a sap bonus.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Wave 4 - Gloom Moths from the North", "goto": null, "note": "Banner slides from top (fade if Reduce Motion), auto-hides after 3s" },
-        { "type": "bar", "label": "Next wave in 8s", "goto": null, "note": "Countdown bar + number" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "icon", "label": "Spawn-edge indicator: moth shape x6, crawler shape x4", "goto": null, "note": "Shape + count, at the spawn point" },
-        { "type": "toast", "label": "NEW: Gloom Moth - invisible outside light. Lantern Owls reveal it.", "goto": null, "note": "Tip card, tap to dismiss; shown once per enemy type" },
-        { "type": "map", "label": "Map, path highlighted briefly from spawn to Tree", "goto": null, "note": "Path preview reveals dark stretches" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Call early +15 sap", "goto": "hud_default", "note": "Primary center 160x64pt, bonus shrinks as timer runs" },
-        { "type": "button", "label": "Speed 1x / 2x", "goto": null, "note": "" },
-        { "type": "button", "label": "Hero ability", "goto": "hud_ability_target", "note": "" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Wave 4 - Dusk Moths from the North",
+            "goto": null,
+            "note": "Banner slides from top (fade if Reduce Motion), auto-hides after 3s"
+          },
+          {
+            "type": "bar",
+            "label": "Next wave in 8s",
+            "goto": null,
+            "note": "Countdown bar + number"
+          },
+          {
+            "type": "bar",
+            "label": "Light meter: darkness surge incoming (-10% at wave start)",
+            "goto": null,
+            "note": "Dark segment preview hatched on the bar so players see the hit before it lands"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "icon",
+            "label": "Spawn-edge indicator: moth shape x6, crawler shape x4",
+            "goto": null,
+            "note": "Shape + count, at the spawn point"
+          },
+          {
+            "type": "toast",
+            "label": "NEW: Dusk Moth - flies to lanterns and dims them. Shoot it before the light goes out.",
+            "goto": null,
+            "note": "Tip card, tap to dismiss; shown once per enemy type"
+          },
+          {
+            "type": "map",
+            "label": "Map, path highlighted briefly from spawn to Tree",
+            "goto": null,
+            "note": "Path preview shows which lanterns lie on the route (snuff risk)"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Call early +15 sap",
+            "goto": "hud_default",
+            "note": "Primary center 160x64pt, bonus shrinks as timer runs"
+          },
+          {
+            "type": "button",
+            "label": "Speed 1x / 2x",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Hero ability",
+            "goto": "hud_ability_target",
+            "note": ""
+          }
+        ]
+      }
     ],
     "annotations": [
       "Audio sting + haptic on wave start; visual cue duplicated for players with sound off.",
@@ -281,16 +874,42 @@
   {
     "id": "hud_ability_target",
     "name": "In-Game HUD - Hero Ability Targeting",
-    "purpose": "Aim Ember's Flare (a burst of light that reveals and stuns shadows) with one thumb.",
+    "purpose": "Aim Ember's Dawnburst (a burst of light that relights ground and stuns shadows) with one thumb.",
     "regions": [
-      { "zone": "middle", "elements": [
-        { "type": "map", "label": "Map with valid-target tint; flare circle follows finger offset 60pt above touch", "goto": null, "note": "Offset reticle so the thumb never hides the target" },
-        { "type": "label", "label": "Drag to aim - release to cast", "goto": null, "note": "Hint, first 3 uses only" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Release = cast", "goto": "hud_default", "note": "Prototype stand-in for drag-release" },
-        { "type": "button", "label": "Cancel (drag back onto ability button)", "goto": "hud_default", "note": "Also: dedicated Cancel button 56pt for accessibility (tap-tap mode)" }
-      ]}
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "map",
+            "label": "Map with valid-target tint; burst circle follows finger offset 60pt above touch and previews ground it will relight",
+            "goto": null,
+            "note": "Offset reticle so the thumb never hides the target"
+          },
+          {
+            "type": "label",
+            "label": "Drag to aim - release to cast",
+            "goto": null,
+            "note": "Hint, first 3 uses only"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Release = cast",
+            "goto": "hud_default",
+            "note": "Prototype stand-in for drag-release"
+          },
+          {
+            "type": "button",
+            "label": "Cancel (drag back onto ability button)",
+            "goto": "hud_default",
+            "note": "Also: dedicated Cancel button 56pt for accessibility (tap-tap mode)"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Accessibility alternative (Settings): tap ability, then tap target, then tap Confirm - no drag required.",
@@ -302,17 +921,58 @@
     "name": "Pause",
     "purpose": "Safe stop: resume, restart, adjust settings, or leave the level.",
     "regions": [
-      { "zone": "overlay", "elements": [
-        { "type": "sheet", "label": "Pause sheet (game blurred/dimmed behind)", "goto": null, "note": "Auto-shown when app is backgrounded or a call comes in" },
-        { "type": "label", "label": "Level 4 - Wave 3/12 - Tree 18", "goto": null, "note": "" },
-        { "type": "card", "label": "Tip: Lantern light also slows Shade Crawlers", "goto": null, "note": "Rotating contextual tips" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Settings", "goto": "settings", "note": "Secondary" },
-        { "type": "button", "label": "Restart (confirm)", "goto": "hud_default", "note": "Opens 'Restart level? Progress this run is lost' confirm" },
-        { "type": "button", "label": "Quit to map (confirm)", "goto": "world_map", "note": "Confirm dialog; destructive styling" },
-        { "type": "button", "label": "Resume", "goto": "hud_default", "note": "Primary, largest (358x64pt), lowest position" }
-      ]}
+      {
+        "zone": "overlay",
+        "elements": [
+          {
+            "type": "sheet",
+            "label": "Pause sheet (game blurred/dimmed behind)",
+            "goto": null,
+            "note": "Auto-shown when app is backgrounded or a call comes in"
+          },
+          {
+            "type": "label",
+            "label": "Level 4 - Wave 3/12 - Tree 18",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "card",
+            "label": "Tip: Murk Crawlers dim lanterns they touch - guard your lights",
+            "goto": null,
+            "note": "Rotating contextual tips"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Settings",
+            "goto": "settings",
+            "note": "Secondary"
+          },
+          {
+            "type": "button",
+            "label": "Restart (confirm)",
+            "goto": "hud_default",
+            "note": "Opens 'Restart level? Progress this run is lost' confirm"
+          },
+          {
+            "type": "button",
+            "label": "Quit to map (confirm)",
+            "goto": "world_map",
+            "note": "Confirm dialog; destructive styling"
+          },
+          {
+            "type": "button",
+            "label": "Resume",
+            "goto": "hud_default",
+            "note": "Primary, largest (358x64pt), lowest position"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Resume is the closest button to the thumb; destructive actions sit above it and need a second confirm."
@@ -323,19 +983,63 @@
     "name": "Victory",
     "purpose": "Celebrate, show stars and rewards, and get the player into the next level fast.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Dawn breaks! The Tree holds.", "goto": null, "note": "" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "icon", "label": "Stars 2/3 (lanterns lighting in sequence)", "goto": null, "note": "Each star labelled with its goal met/missed" },
-        { "type": "list", "label": "Rewards: +180 amber sap, Codex entry: Gloom Moth", "goto": null, "note": "" },
-        { "type": "button", "label": "Double sap (watch ad)", "goto": null, "note": "Opt-in rewarded ad, secondary styling; never auto-plays" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Replay", "goto": "level_briefing", "note": "Secondary" },
-        { "type": "button", "label": "Map", "goto": "world_map", "note": "Secondary" },
-        { "type": "button", "label": "Next Level", "goto": "level_briefing", "note": "Primary bottom-right 200x64pt" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Dawn breaks! The Tree holds.",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "icon",
+            "label": "Stars 2/3 (lanterns lighting in sequence)",
+            "goto": null,
+            "note": "Each star labelled with its goal met/missed (e.g. 'Kept 50%+ of the forest lit')"
+          },
+          {
+            "type": "list",
+            "label": "Rewards: +180 amber sap, Codex entry: Dusk Moth",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Double sap (watch ad)",
+            "goto": null,
+            "note": "Opt-in rewarded ad, secondary styling; never auto-plays"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Replay",
+            "goto": "level_briefing",
+            "note": "Secondary"
+          },
+          {
+            "type": "button",
+            "label": "Map",
+            "goto": "world_map",
+            "note": "Secondary"
+          },
+          {
+            "type": "button",
+            "label": "Next Level",
+            "goto": "level_briefing",
+            "note": "Primary bottom-right 200x64pt"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Ceremony skippable with a tap after 0.5s; under 6s total.",
@@ -347,19 +1051,63 @@
     "name": "Defeat",
     "purpose": "Soften failure, teach why it happened, and offer a clear retry path.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "The Tree's light dims...", "goto": null, "note": "Never mock the player" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "card", "label": "Why: 7 Gloom Moths slipped through the dark bend near the south roots", "goto": null, "note": "Mini-map with the leak point marked; generated from telemetry of the run" },
-        { "type": "card", "label": "Try: place a Lantern Owl at spot C2", "goto": null, "note": "One actionable tip" },
-        { "type": "button", "label": "Second chance: revive with +5 Tree (watch ad, once)", "goto": "hud_default", "note": "Opt-in rewarded ad" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Upgrade towers", "goto": "research", "note": "Secondary" },
-        { "type": "button", "label": "Map", "goto": "world_map", "note": "Secondary" },
-        { "type": "button", "label": "Retry", "goto": "hud_default", "note": "Primary bottom-right 200x64pt" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "The Tree's light dims...",
+            "goto": null,
+            "note": "Never mock the player"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "card",
+            "label": "Why: Dusk Moths snuffed 3 lanterns at the south roots; darkness reached the Tree at wave 9",
+            "goto": null,
+            "note": "Mini-map with the leak point marked; generated from telemetry of the run"
+          },
+          {
+            "type": "card",
+            "label": "Try: guard Lantern B1 with an Archer Owl set to 'Snuffer' targeting",
+            "goto": null,
+            "note": "One actionable tip"
+          },
+          {
+            "type": "button",
+            "label": "Second chance: revive with +5 Tree (watch ad, once)",
+            "goto": "hud_default",
+            "note": "Opt-in rewarded ad"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Upgrade towers",
+            "goto": "research",
+            "note": "Secondary"
+          },
+          {
+            "type": "button",
+            "label": "Map",
+            "goto": "world_map",
+            "note": "Secondary"
+          },
+          {
+            "type": "button",
+            "label": "Retry",
+            "goto": "hud_default",
+            "note": "Primary bottom-right 200x64pt"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Keep partial sap earned on defeat (Economy to confirm) to reduce churn after loss."
@@ -370,19 +1118,63 @@
     "name": "Owl Roster (Heroes)",
     "purpose": "Browse and pick hero owls; vertical slice ships 1 playable owl with locked silhouettes for future ones.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "The Roost", "goto": null, "note": "" },
-        { "type": "label", "label": "Sap 1,240", "goto": "shop", "note": "" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "grid", "label": "Owl cards 2-column grid", "goto": null, "note": "Card 171x200pt" },
-        { "type": "card", "label": "Ember the Barn Owl - Lv 3 (equipped)", "goto": "hero_detail", "note": "" },
-        { "type": "card", "label": "??? Snowy Owl (silhouette, coming soon)", "goto": null, "note": "Locked state; no purchase pressure in vertical slice" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Back", "goto": "home", "note": "" },
-        { "type": "button", "label": "Tab bar (Owls active)", "goto": "home", "note": "Same 5-tab bar as Home" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "The Roost",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "label",
+            "label": "Sap 1,240",
+            "goto": "shop",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "grid",
+            "label": "Owl cards 2-column grid",
+            "goto": null,
+            "note": "Card 171x200pt"
+          },
+          {
+            "type": "card",
+            "label": "Ember the Barn Owl - Lv 3 (equipped)",
+            "goto": "hero_detail",
+            "note": ""
+          },
+          {
+            "type": "card",
+            "label": "??? Snowy Owl (silhouette, coming soon)",
+            "goto": null,
+            "note": "Locked state; no purchase pressure in vertical slice"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "home",
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Tab bar (Owls active)",
+            "goto": "home",
+            "note": "Same 5-tab bar as Home"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Grid scrolls vertically; first row starts at y ~140 but list scrolls so cards can be pulled into the thumb zone."
@@ -393,19 +1185,63 @@
     "name": "Hero Detail",
     "purpose": "See an owl's abilities, level it up with sap, choose a cosmetic, equip.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "button", "label": "Back", "goto": "roster", "note": "Top-left 44pt; also swipe-right / system back" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "card", "label": "Ember portrait (idle anim) + role 'Light bringer'", "goto": null, "note": "" },
-        { "type": "list", "label": "Abilities: Flare (active), Night Eyes (passive: nearby towers see in dark)", "goto": null, "note": "Each with icon + one-line effect" },
-        { "type": "list", "label": "Stats with next-level delta", "goto": null, "note": "" },
-        { "type": "card", "label": "Cosmetic: Lantern-maker cloak", "goto": "shop", "note": "Cosmetic only, no stats" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Level up - 300 sap", "goto": null, "note": "Primary, two-tap confirm" },
-        { "type": "button", "label": "Equipped", "goto": "roster", "note": "State button" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "roster",
+            "note": "Top-left 44pt; also swipe-right / system back"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "card",
+            "label": "Ember portrait (idle anim) + role 'Light keeper'",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Abilities: Dawnburst (active: relights a patch of ground), Night Eyes (passive: nearby owls hit harder in darkness)",
+            "goto": null,
+            "note": "Each with icon + one-line effect"
+          },
+          {
+            "type": "list",
+            "label": "Stats with next-level delta",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "card",
+            "label": "Cosmetic: Lantern-maker cloak",
+            "goto": "shop",
+            "note": "Cosmetic only, no stats"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Level up - 300 sap",
+            "goto": null,
+            "note": "Primary, two-tap confirm"
+          },
+          {
+            "type": "button",
+            "label": "Equipped",
+            "goto": "roster",
+            "note": "State button"
+          }
+        ]
+      }
     ],
     "annotations": []
   },
@@ -414,20 +1250,69 @@
     "name": "Tower Research Tree",
     "purpose": "Permanent tower upgrades bought with amber sap between levels.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Lantern Workshop", "goto": null, "note": "" },
-        { "type": "label", "label": "Sap 1,240", "goto": "shop", "note": "" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "grid", "label": "Upgrade tree for selected tower (vertical, roots at bottom, branches grow up)", "goto": null, "note": "Nodes 64pt; scroll vertically; available nodes glow, bought nodes filled, locked nodes outlined + lock" },
-        { "type": "sheet", "label": "Node detail sheet: 'Brighter Wick: +15% light radius' - 200 sap", "goto": null, "note": "Opens on node tap; Research button in sheet" },
-        { "type": "button", "label": "Research (200 sap)", "goto": null, "note": "Primary inside sheet, bottom; two-tap confirm" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "list", "label": "Tower selector chips: Lantern / Archer / Thornspitter / Moonbell / Gust / Rootwall", "goto": null, "note": "Horizontally scrolling chips 64x56pt, placed at bottom for reach" },
-        { "type": "button", "label": "Back", "goto": "home", "note": "" },
-        { "type": "button", "label": "Reset tree (free refund)", "goto": null, "note": "Small text button; encourages experimentation" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Lantern Workshop",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "label",
+            "label": "Sap 1,240",
+            "goto": "shop",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "grid",
+            "label": "Upgrade tree for selected tower (vertical, roots at bottom, branches grow up)",
+            "goto": null,
+            "note": "Nodes 64pt; scroll vertically; available nodes glow, bought nodes filled, locked nodes outlined + lock"
+          },
+          {
+            "type": "sheet",
+            "label": "Node detail sheet: 'Brighter Wick: +15% light radius' - 200 sap",
+            "goto": null,
+            "note": "Opens on node tap; Research button in sheet"
+          },
+          {
+            "type": "button",
+            "label": "Research (200 sap)",
+            "goto": null,
+            "note": "Primary inside sheet, bottom; two-tap confirm"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "list",
+            "label": "Tower selector chips: Lantern / Archer / Thornspitter / Moonbell / Gust / Rootwall",
+            "goto": null,
+            "note": "Horizontally scrolling chips 64x56pt, placed at bottom for reach"
+          },
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "home",
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Reset tree (free refund)",
+            "goto": null,
+            "note": "Small text button; encourages experimentation"
+          }
+        ]
+      }
     ],
     "annotations": [
       "Tree grows bottom-up so the cheapest, most-used nodes are nearest the thumb.",
@@ -439,21 +1324,75 @@
     "name": "Shop",
     "purpose": "Fair-F2P store: cosmetics, sap bundles, optional pass, rewarded-ad freebie. No loot boxes.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Sap 1,240", "goto": null, "note": "" },
-        { "type": "button", "label": "Restore purchases", "goto": null, "note": "Required for iOS non-consumables" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "card", "label": "Free: watch an ad for 50 sap (3/day)", "goto": null, "note": "Opt-in; ATT prompt shown before first ad on iOS" },
-        { "type": "list", "label": "Cosmetics: owl cloaks, lantern skins, tree decorations", "goto": null, "note": "Exact price in local currency shown on the button" },
-        { "type": "card", "label": "Hollow Pass (optional premium track)", "goto": null, "note": "Scope per Economy designer" },
-        { "type": "list", "label": "Sap bundles", "goto": null, "note": "" },
-        { "type": "sheet", "label": "Purchase confirm sheet (item, price, what you get)", "goto": null, "note": "Then native store sheet" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Back", "goto": "home", "note": "" },
-        { "type": "button", "label": "Tab bar (Shop active)", "goto": "home", "note": "" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Sap 1,240",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Restore purchases",
+            "goto": null,
+            "note": "Required for iOS non-consumables"
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "card",
+            "label": "Free: watch an ad for 50 sap (3/day)",
+            "goto": null,
+            "note": "Opt-in; ATT prompt shown before first ad on iOS"
+          },
+          {
+            "type": "list",
+            "label": "Cosmetics: owl cloaks, lantern skins, tree decorations",
+            "goto": null,
+            "note": "Exact price in local currency shown on the button"
+          },
+          {
+            "type": "card",
+            "label": "Hollow Pass (optional premium track)",
+            "goto": null,
+            "note": "Scope per Economy designer"
+          },
+          {
+            "type": "list",
+            "label": "Sap bundles",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "sheet",
+            "label": "Purchase confirm sheet (item, price, what you get)",
+            "goto": null,
+            "note": "Then native store sheet"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "home",
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Tab bar (Shop active)",
+            "goto": "home",
+            "note": ""
+          }
+        ]
+      }
     ],
     "annotations": [
       "No timers, no fake discounts, no randomized paid rewards. Clear real-money prices.",
@@ -465,17 +1404,51 @@
     "name": "Codex (Bestiary)",
     "purpose": "Reference for enemies and towers: what each shadow creature does and how light affects it.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Codex", "goto": null, "note": "" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "grid", "label": "Enemy tiles 3-column (seen = art, unseen = silhouette)", "goto": null, "note": "Each enemy has a unique silhouette + icon glyph usable in colorblind modes" },
-        { "type": "card", "label": "Gloom Moth: hidden in darkness; light reveals; weak to Lantern", "goto": null, "note": "Detail card on tap" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Enemies / Towers segmented toggle", "goto": null, "note": "Bottom placement for reach" },
-        { "type": "button", "label": "Back", "goto": "home", "note": "" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Codex",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "grid",
+            "label": "Enemy tiles 3-column (seen = art, unseen = silhouette)",
+            "goto": null,
+            "note": "Each enemy has a unique silhouette + glyph and a light-interaction tag (snuffs / spreads dark / immune in dark)"
+          },
+          {
+            "type": "card",
+            "label": "Dusk Moth: flies over the path to dim lanterns; owls still hit it in the dark",
+            "goto": null,
+            "note": "Detail card on tap"
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Enemies / Towers segmented toggle",
+            "goto": null,
+            "note": "Bottom placement for reach"
+          },
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "home",
+            "note": ""
+          }
+        ]
+      }
     ],
     "annotations": []
   },
@@ -484,23 +1457,87 @@
     "name": "Settings",
     "purpose": "Audio, controls, handedness, notifications, account/privacy, help - and entry to accessibility.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Settings", "goto": null, "note": "" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "button", "label": "Accessibility", "goto": "settings_accessibility", "note": "First row, not buried" },
-        { "type": "list", "label": "Music / SFX / Voice sliders", "goto": null, "note": "Sliders with 44pt thumbs" },
-        { "type": "list", "label": "Haptics on/off", "goto": null, "note": "" },
-        { "type": "list", "label": "Handedness: Right / Left (mirrors HUD tray)", "goto": null, "note": "" },
-        { "type": "list", "label": "Confirm style: Tap-tap (default) / Hold / Single tap (expert)", "goto": null, "note": "" },
-        { "type": "list", "label": "Default game speed 1x / 2x; Auto-start waves off/on", "goto": null, "note": "" },
-        { "type": "button", "label": "Replay tutorial", "goto": "tutorial_overlay", "note": "" },
-        { "type": "list", "label": "Language, Notifications, Privacy & data, Support, Credits", "goto": null, "note": "" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Done", "goto": "home", "note": "Bottom, full width. When opened from Pause, Done returns to pause" },
-        { "type": "button", "label": "Back to Pause (if in level)", "goto": "pause", "note": "Prototype link for the in-level path" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Settings",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Accessibility",
+            "goto": "settings_accessibility",
+            "note": "First row, not buried"
+          },
+          {
+            "type": "list",
+            "label": "Music / SFX / Voice sliders",
+            "goto": null,
+            "note": "Sliders with 44pt thumbs"
+          },
+          {
+            "type": "list",
+            "label": "Haptics on/off",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Handedness: Right / Left (mirrors HUD tray)",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Confirm style: Tap-tap (default) / Hold / Single tap (expert)",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Default game speed 1x / 2x; Auto-start waves off/on",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "button",
+            "label": "Replay tutorial",
+            "goto": "tutorial_overlay",
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Language, Notifications, Privacy & data, Support, Credits",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Done",
+            "goto": "home",
+            "note": "Bottom, full width. When opened from Pause, Done returns to pause"
+          },
+          {
+            "type": "button",
+            "label": "Back to Pause (if in level)",
+            "goto": "pause",
+            "note": "Prototype link for the in-level path"
+          }
+        ]
+      }
     ],
     "annotations": [
       "All settings apply live with preview; no restart required."
@@ -511,24 +1548,99 @@
     "name": "Settings - Accessibility",
     "purpose": "Make the light-vs-dark game readable and playable for low vision, color vision deficiency, motion sensitivity and limited dexterity.",
     "regions": [
-      { "zone": "top", "elements": [
-        { "type": "label", "label": "Accessibility", "goto": null, "note": "" }
-      ]},
-      { "zone": "middle", "elements": [
-        { "type": "list", "label": "Text size: 100% / 125% / 150% (live preview)", "goto": null, "note": "Respects OS Dynamic Type / font scale as default" },
-        { "type": "list", "label": "Color vision: Off / Protan / Deutan / Tritan", "goto": null, "note": "Shape-coding of enemies and states is always on regardless" },
-        { "type": "list", "label": "Darkness readability: Atmospheric / Balanced / Clear", "goto": null, "note": "Raises ambient light on map + enemy outline strength; gameplay rules unchanged (hidden enemies still need light to be targeted)" },
-        { "type": "list", "label": "High-contrast HUD", "goto": null, "note": "Solid plates behind HUD text (7:1)" },
-        { "type": "list", "label": "Reduce motion (follows OS)", "goto": null, "note": "No screen shake, no parallax, fades instead of slides" },
-        { "type": "list", "label": "Reduce flashes", "goto": null, "note": "Caps flare/explosion flash intensity and frequency" },
-        { "type": "list", "label": "Slow time while building / aiming", "goto": null, "note": "" },
-        { "type": "list", "label": "Tap-tap aiming (no drag)", "goto": null, "note": "" },
-        { "type": "list", "label": "Larger touch targets (+25%)", "goto": null, "note": "" },
-        { "type": "list", "label": "Visual cues for audio (wave start, Tree hit)", "goto": null, "note": "" }
-      ]},
-      { "zone": "bottom", "elements": [
-        { "type": "button", "label": "Back", "goto": "settings", "note": "" }
-      ]}
+      {
+        "zone": "top",
+        "elements": [
+          {
+            "type": "label",
+            "label": "Accessibility",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "middle",
+        "elements": [
+          {
+            "type": "list",
+            "label": "Text size: 100% / 125% / 150% (live preview)",
+            "goto": null,
+            "note": "Respects OS Dynamic Type / font scale as default"
+          },
+          {
+            "type": "list",
+            "label": "Color vision: Off / Protan / Deutan / Tritan",
+            "goto": null,
+            "note": "Shape-coding of enemies and states is always on regardless"
+          },
+          {
+            "type": "list",
+            "label": "Darkness readability: Atmospheric / Balanced / Clear",
+            "goto": null,
+            "note": "Raises map ambient light and enemy outlines; lit/dark territory difference is always preserved (minimum luminance gap is locked); rules unchanged"
+          },
+          {
+            "type": "list",
+            "label": "Territory pattern: Hatch / Dots / Off-with-outlines",
+            "goto": null,
+            "note": "Choose the dark-ground texture; default Hatch. Glyphs on spots are always on"
+          },
+          {
+            "type": "list",
+            "label": "High-contrast HUD",
+            "goto": null,
+            "note": "Solid plates behind HUD text (7:1)"
+          },
+          {
+            "type": "list",
+            "label": "Reduce motion (follows OS)",
+            "goto": null,
+            "note": "No screen shake, no parallax, fades instead of slides"
+          },
+          {
+            "type": "list",
+            "label": "Reduce flashes",
+            "goto": null,
+            "note": "Caps burst/explosion flash intensity and frequency"
+          },
+          {
+            "type": "list",
+            "label": "Slow time while building / aiming",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Tap-tap aiming (no drag)",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Larger touch targets (+25%)",
+            "goto": null,
+            "note": ""
+          },
+          {
+            "type": "list",
+            "label": "Visual cues for audio (wave start, Tree hit)",
+            "goto": null,
+            "note": ""
+          }
+        ]
+      },
+      {
+        "zone": "bottom",
+        "elements": [
+          {
+            "type": "button",
+            "label": "Back",
+            "goto": "settings",
+            "note": ""
+          }
+        ]
+      }
     ],
     "annotations": [
       "Offer a short 'Recommended for me' prompt on first launch? -> No: keep FTUE short; surface this screen from Pause and Settings instead.",
