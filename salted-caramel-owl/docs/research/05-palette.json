@@ -1,0 +1,77 @@
+{
+  "$schema_note": "Hollowguard (placeholder) color tokens v0.1. Owner: Art & Audio Director. Token names are kebab-case and engine-agnostic; consume via build step (e.g. generate .tres/.json theme). Hex is sRGB.",
+  "version": "0.1.0",
+  "style": "Lantern-lit flat vector (layered SVG shapes + runtime glow)",
+  "rules": {
+    "friend_vs_foe": "Friendly = warm (amber/caramel/cream). Hostile = cool violet rim on near-black ink body. Never give an enemy a warm fill or a tower a violet fill.",
+    "value_first": "Every gameplay-critical pair must separate by lightness or by >= 15 CIEDE2000 under protan/deutan/tritan simulation (Machado 2009, severity 1.0). Hue alone is never the only cue.",
+    "enemy_readability": "Enemy bodies are shadow-ink and nearly vanish on ground by design; the shadow-rim outline (>= 3 px at 1080p) is mandatory and is what the player reads. Rim vs ground: 5.15:1.",
+    "status_effects": "Every status (slowed, revealed, weakened, burning) = color + icon/pattern. frost and moon-100 collapse under deutan/protan, so frost is only ever used together with the snowflake/shard pattern.",
+    "glow": "Glow colors (sap-*, amber-400) are additive light on the night layer, never flat fills on large areas. Max 3 glow sources fully saturated on screen at once except during boss.",
+    "danger": "danger is reserved for player-threat UI (tree HP low, leak warning). Always paired with an icon and a pulse; never used on enemy sprites.",
+    "text": "Body text uses salt-50 or moon-100 on night-800/900 panels (>= 13:1). text-muted is the minimum for secondary text (7.0:1 on night-800). danger text only at >= 24 px bold (4.56:1)."
+  },
+  "tokens": {
+    "night": {
+      "night-950": { "hex": "#070A1A", "role": "Letterbox, deepest shadow, vignette edge" },
+      "night-900": { "hex": "#0B1026", "role": "Sky top, UI scrim base" },
+      "night-800": { "hex": "#141B3D", "role": "UI panel fill (use at 92% alpha over play area)" },
+      "night-700": { "hex": "#1F2A5A", "role": "Mid sky, distant parallax, UI secondary panel" },
+      "night-600": { "hex": "#2E3C78", "role": "UI strokes/dividers, far foliage" },
+      "dusk-500":  { "hex": "#4A5A9E", "role": "Moonlit highlights on terrain, disabled-button fill" }
+    },
+    "world": {
+      "ground":    { "hex": "#18233F", "role": "Playfield ground (unbuildable)" },
+      "path":      { "hex": "#55608F", "role": "Enemy path stone (2.56:1 vs ground)" },
+      "bark-800":  { "hex": "#2B1F24", "role": "Great Hollow Tree shadow side, trunks" },
+      "bark-600":  { "hex": "#5C4038", "role": "Tree lit side, wooden build pads" },
+      "leaf-700":  { "hex": "#1C3B4A", "role": "Foliage, bushes (deep teal, stays out of enemy violet)" }
+    },
+    "light": {
+      "sap-100":     { "hex": "#FFF1D0", "role": "Hottest glow core, light-burst center" },
+      "sap-300":     { "hex": "#FFE0A3", "role": "Glow inner ring, lantern flame" },
+      "amber-400":   { "hex": "#FFC15E", "role": "Primary light/glow, selection & focus highlight, owl eyes" },
+      "caramel-500": { "hex": "#E8A33D", "role": "Caramel sap currency, primary CTA buttons, tower trim" },
+      "caramel-700": { "hex": "#A8621E", "role": "Caramel shading, button pressed state" },
+      "caramel-900": { "hex": "#5E3410", "role": "Outline/ink for warm objects, text on caramel/sap buttons (8.3:1 on sap-300)" }
+    },
+    "owls": {
+      "owl-brown": { "hex": "#8A5A3C", "role": "Owl plumage base" },
+      "owl-cream": { "hex": "#F3E3C3", "role": "Owl face disc & belly (4.8:1 vs path)" }
+    },
+    "shadow": {
+      "shadow-ink":  { "hex": "#07060F", "role": "Enemy body fill (silhouette)" },
+      "shadow-core": { "hex": "#3B2470", "role": "Enemy inner mass; body lifts to this when REVEALED by light" },
+      "shadow-rim":  { "hex": "#A97BFF", "role": "Mandatory enemy outline + projectile trails (5.15:1 vs ground)" },
+      "shadow-eye":  { "hex": "#EBDDFF", "role": "Enemy eyes; ELITE double-rim (elites also get spike/crown silhouette)" }
+    },
+    "ui": {
+      "salt-50":    { "hex": "#FFF8EC", "role": "Primary text, numbers (15.9:1 on night-800)" },
+      "moon-100":   { "hex": "#DDE6FF", "role": "Secondary headings, cool info text" },
+      "text-muted": { "hex": "#9AA6D6", "role": "Tertiary text, labels (7.0:1 on night-800)" },
+      "danger":     { "hex": "#F0407A", "role": "Tree under attack, leak warning, can't-afford (with icon)" },
+      "frost":      { "hex": "#BFF3FF", "role": "Slow status tint (always with shard pattern/icon)" }
+    }
+  },
+  "validation": {
+    "method": "Machado et al. 2009 CVD simulation (severity 1.0) in linear sRGB, CIEDE2000 on simulated colors, WCAG 2.x contrast ratio. Script run headless in CI-equivalent Python, no GUI.",
+    "pairs": [
+      { "a": "shadow-rim", "b": "ground",      "wcag": 5.15, "de_normal": 43.3, "de_protan": 42.8, "de_deutan": 43.0, "de_tritan": 45.8 },
+      { "a": "shadow-rim", "b": "path",        "wcag": 2.02, "de_normal": 24.0, "de_protan": 21.6, "de_deutan": 22.7, "de_tritan": 28.1 },
+      { "a": "shadow-ink", "b": "path",        "wcag": 3.32, "de_normal": 31.6, "de_protan": 32.1, "de_deutan": 31.0, "de_tritan": 31.1 },
+      { "a": "shadow-rim", "b": "amber-400",   "wcag": 1.87, "de_normal": 59.7, "de_protan": 59.1, "de_deutan": 60.5, "de_tritan": 26.5 },
+      { "a": "shadow-rim", "b": "caramel-500", "wcag": 1.40, "de_normal": 57.6, "de_protan": 58.6, "de_deutan": 59.6, "de_tritan": 27.5 },
+      { "a": "shadow-eye", "b": "shadow-rim",  "wcag": 2.34, "de_normal": 27.6, "de_protan": 25.9, "de_deutan": 26.3, "de_tritan": 21.8 },
+      { "a": "shadow-rim", "b": "frost",       "wcag": 2.51, "de_normal": 30.7, "de_protan": 30.4, "de_deutan": 27.4, "de_tritan": 33.7 },
+      { "a": "danger",     "b": "caramel-500", "wcag": 1.70, "de_normal": 45.6, "de_protan": 38.8, "de_deutan": 19.7, "de_tritan": 18.1 },
+      { "a": "amber-400",  "b": "ground",      "wcag": 9.65, "de_normal": 78.2, "de_protan": 74.6, "de_deutan": 82.2, "de_tritan": 73.5 },
+      { "a": "salt-50",    "b": "night-800",   "wcag": 15.86 },
+      { "a": "text-muted", "b": "night-800",   "wcag": 7.02 },
+      { "a": "danger",     "b": "night-800",   "wcag": 4.56 }
+    ],
+    "known_weak_pairs": [
+      { "a": "frost", "b": "moon-100", "note": "Collapse under deutan (dE 0.6). Never adjacent with meaning; frost always carries a pattern." },
+      { "a": "shadow-eye", "b": "sap-300", "note": "Tritan dE 12.1. Acceptable: eyes are tiny and never overlap lantern cores; enemies are not lit with sap colors." }
+    ]
+  }
+}
