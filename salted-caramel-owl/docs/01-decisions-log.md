@@ -1,4 +1,4 @@
-# Decisions Log — Lead rulings (v0.2, 23 Nov 2026)
+# Decisions Log — Lead rulings (v0.3, 23 Nov 2026)
 
 > Binding for all agents until the Owner overrides. Each ruling names the docs it supersedes.
 > Status: **D** = decided by Lead · **O** = waiting on Owner · **X** = Owner-confirmed.
@@ -32,6 +32,7 @@
 | 16 | Growth | **Organic first** (store optimization, community, creators). Small UA tests only after soft-launch KPIs | D |
 | 17 | Engine | **Godot 4.7 (GDScript, typed)**. Runner-up: Phaser 4 + Capacitor | D |
 | 18 | Art | Lantern-lit flat vector (SVG) with runtime glow and cut-out animation; palette `research/05-palette.json` | D |
-| 19 | Monthly AI and tooling budget | Ops proposes $3–5k/mo agents + ~$50/mo tooling + paid asset-tool plans | O |
-| 20 | Publisher identity | Organization vs individual developer accounts | O |
-| 21 | Human-authored key assets | Logo, key art and main theme need human creative input for copyright | O |
+| 19 | Monthly AI and tooling budget | **Lean: about $1k/mo all-in (Owner, 23 Nov).** Fewer parallel agents, smaller models for routine work, the strongest model only for Lead/Reviewer. Roadmap re-planned: G2 about 16 Jul 2027, G3 about 22 Oct 2027, G4 about Feb 2028 (Lead estimate) | X |
+| 20 | Publisher identity | **Individual developer accounts in the Owner's name (Owner, 23 Nov).** Plan for the reported new-personal-account Play rule (12 testers, 14-day closed test; unverified) inside P3 | X |
+| 21 | Human-authored key assets | **AI-only (Owner, 23 Nov).** Assets are not copyrightable in the US. Protect the brand through **trademark of the final title + logo**, and keep provenance records for every asset | X |
+| 22 | Code home | **New dedicated repo** (the Owner creates it; the Lead attaches it and migrates these docs). GitHub Issues becomes the agent task board | X |

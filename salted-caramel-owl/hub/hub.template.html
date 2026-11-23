@@ -158,11 +158,12 @@ td .mono{color:var(--sap)}
 .pill{display:inline-block;font:600 .68rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 8px;white-space:nowrap}
 .pill.d{background:rgba(255,193,94,.16);color:var(--amber)}
 .pill.o{background:var(--rim);color:var(--ink)}
+.pill.x{background:var(--owl-cream);color:var(--caramel-ink)}
 
 /* roadmap */
 .road{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
 .road-inner{min-width:760px;padding:18px;display:grid;gap:10px}
-.months{display:grid;grid-template-columns:repeat(12,1fr);font:600 .68rem var(--f-mono);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:6px}
+.months{display:grid;grid-template-columns:repeat(15,1fr);font:600 .68rem var(--f-mono);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:6px}
 .phase{position:relative;height:44px}
 .phase .seg{position:absolute;top:0;bottom:0;border-radius:8px;background:var(--panel-2);border:1px solid var(--line);padding:5px 9px;display:grid;align-content:center;overflow:hidden}
 .phase .seg b{font-size:.82rem;white-space:nowrap}
@@ -350,7 +351,7 @@ td .mono{color:var(--sap)}
     <div class="sec-head">
       <div class="eyebrow">Decisions log v0.2</div>
       <h2>Already decided, so you don't have to</h2>
-      <p>These calls stand until you override them. Purple rows are waiting on you.</p>
+      <p>These calls stand until you override them. Cream pills are decisions you made yourself; only the title is still open.</p>
     </div>
     <div class="tbl-wrap">
       <table>
@@ -364,9 +365,9 @@ td .mono{color:var(--sap)}
 <section id="roadmap">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Roadmap · Nov 2026 → Nov 2027</div>
+      <div class="eyebrow">Roadmap · Nov 2026 → Feb 2028 · lean budget</div>
       <h2>Four gates, and you approve each one</h2>
-      <p>Agents work between gates; you approve at the diamonds. Each phase carries about 15% slack, and any slip over a week reaches you in the Monday digest.</p>
+      <p>Agents work between gates; you approve at the diamonds. Re-planned for the lean $1k/mo budget, so dates after the concept gate are estimates. Any slip over a week reaches you in the Monday digest.</p>
     </div>
     <div class="road"><div class="road-inner" id="road"></div></div>
   </div>
@@ -375,18 +376,19 @@ td .mono{color:var(--sap)}
 <section id="you">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Needs the Owner · 4 decisions</div>
-      <h2>Your calls</h2>
-      <p>Only these need you. Each has a recommendation; replying "go with your picks" is a valid answer.</p>
+      <div class="eyebrow">Owner decisions · 23 Nov 2026</div>
+      <h2>Your calls, and what they change</h2>
+      <p>You chose lean, personal and AI-only. All three are workable; here is how the plan absorbs each one.</p>
     </div>
     <div class="asks">
-      <div class="ask"><div class="eyebrow">Budget</div><div class="q">What monthly spend cap do the agents get?</div><ul><li>Lean, ~$1k/mo: slower and fewer parallel agents; the vertical slice slips about 2 months</li><li class="rec">Standard, ~$3k/mo: matches the roadmap above</li><li>Fast, ~$5k/mo: more parallel engineers and some buffer</li></ul><p class="muted" style="font-size:.82rem">These are Ops estimates, not quotes. Tooling (CI, crash reporting, analytics) adds about $50/mo; paid art and audio tool plans are extra.</p></div>
-      <div class="ask"><div class="eyebrow">Publisher</div><div class="q">Do we publish as a company or as you personally?</div><ul><li class="rec">Organization: needs a legal entity and a D-U-N-S number; looks more trustworthy on the store</li><li>Individual: faster to set up, but your name shows on the store page. New personal Google Play accounts reportedly must run a 12-tester, 14-day closed test first (unverified)</li></ul></div>
-      <div class="ask"><div class="eyebrow">Ownership</div><div class="q">Who makes the logo, key art and main theme?</div><ul><li>You add real creative input yourself</li><li class="rec">We hire a human freelancer for those 3 assets, so we own their copyright</li><li>AI only: allowed in the stores, but in the US those assets can't be copyrighted; we protect the brand with a trademark only</li></ul></div>
-      <div class="ask"><div class="eyebrow">Home</div><div class="q">Where does the game's code live?</div><ul><li class="rec">A new dedicated repo (for example <span class="mono">hollowguard</span>): you create it and I attach it. Its GitHub issues become the agents' task board</li><li>Keep it in <span class="mono">thmsgbrt</span>: works, but mixes the game with your profile-README project</li></ul></div>
+      <div class="ask"><div class="eyebrow">Budget · ~$1k/mo</div><div class="q">Lean team, same quality bar</div><ul><li>Small models do routine work; the strongest model is kept for the Lead and the Reviewer</li><li>One gameplay engineer at a time instead of three</li><li>Dates after the concept gate moved later (roadmap above)</li></ul></div>
+      <div class="ask"><div class="eyebrow">Publisher · you personally</div><div class="q">Your name on the store page</div><ul><li>Apple $99/yr and Google Play accounts in your name</li><li>A 14-day closed test with 12 testers is planned in P3 (reported rule, to be verified)</li><li>You can move to a company account later</li></ul></div>
+      <div class="ask"><div class="eyebrow">Art · AI only</div><div class="q">Protect the brand with a trademark</div><ul><li>Lock the final title before the soft launch, then file a trademark for the title and logo</li><li>Every asset keeps a record of how it was made, for store and legal audits</li></ul></div>
+      <div class="ask"><div class="eyebrow">Still open · 1 action for you</div><div class="q">Create the empty game repo</div><ul><li class="rec">Create an empty GitHub repo (for example <span class="mono">hollowguard</span>) and send me its name. I'll attach it, move these docs over and open the first backlog issues</li></ul></div>
     </div>
   </div>
 </section>
+
 </main>
 
 <footer class="foot">
@@ -608,15 +610,16 @@ const DEC=[
  [17,"Engine","Godot 4.7","Text-based, headless, free; tested in this container","d"],
  [18,"Art","Lantern-lit flat vector","Readable, consistent, legally clean pipeline","d"],
  [2,"Title","Hollowguard (working)","No exact match found, but the 'Hollow-' prefix is crowded. Finalize at the concept gate","o"],
- [19,"Budget","Monthly spending cap for agents","See Your calls","o"],
- [20,"Publisher","Organization or individual","See Your calls","o"],
- [21,"Copyright","Human-made logo, key art, theme","See Your calls","o"]];
-document.getElementById('dec').innerHTML=DEC.map(([n,t,r,w,s])=>`<tr><td class="mono muted">${n}</td><td><b>${t}</b></td><td>${r}</td><td class="muted">${w}</td><td><span class="pill ${s}">${s==='d'?'Decided':'Needs you'}</span></td></tr>`).join('');
+ [19,"Budget","Lean: about $1k/mo all-in","Your call. Fewer parallel agents; dates moved later","x"],
+ [20,"Publisher","Individual accounts in your name","Your call. A 14-day closed test is planned for in P3","x"],
+ [21,"Copyright","AI-only assets; protect the brand by trademark","Your call. We trademark the final title and logo","x"],
+ [22,"Code home","New dedicated repo","Your call. You create it; I attach it and migrate","x"]];
+document.getElementById('dec').innerHTML=DEC.map(([n,t,r,w,s])=>`<tr><td class="mono muted">${n}</td><td><b>${t}</b></td><td>${r}</td><td class="muted">${w}</td><td><span class="pill ${s}">${s==='d'?'Decided':s==='x'?'You decided':'Needs you'}</span></td></tr>`).join('');
 
 /* ---------- Roadmap ---------- */
-const start=Date.UTC(2026,10,23), end=Date.UTC(2027,10,23), pct=d=>((Date.UTC(...d)-start)/(end-start)*100);
-const M=['Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'];
-const PH=[["P0 Pre-production",[2026,10,23],[2026,11,18],"Docs, wireframes, stack proof",true],["P1 Greybox",[2026,11,21],[2027,1,5],"Sim core, 1 level, CI live"],["P2 Vertical slice",[2027,1,8],[2027,4,7],"World 1, final art, boss"],["P3 Soft-launch prep",[2027,4,17],[2027,7,13],"Economy, ads, compliance, beta"],["P4 Soft launch",[2027,7,30],[2027,10,15],"Weekly KPI updates"]];
-const GT=[["G1 Concept",[2026,11,18],"18 Dec"],["M1 Greybox",[2027,1,5],"5 Feb",true],["G2 Slice",[2027,4,14],"14 May"],["G3 Soft launch",[2027,7,20],"20 Aug"],["G4 Launch",[2027,10,19],"~19 Nov"]];
+const start=Date.UTC(2026,10,23), end=Date.UTC(2028,1,23), pct=d=>((Date.UTC(...d)-start)/(end-start)*100);
+const M=['Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb'];
+const PH=[["P0 Pre-production",[2026,10,23],[2026,11,18],"Docs, wireframes, stack proof",true],["P1 Greybox",[2026,11,21],[2027,1,5],"Sim core, 1 level, CI live"],["P2 Vertical slice",[2027,1,8],[2027,6,9],"World 1, final art, boss"],["P3 Soft-launch prep",[2027,6,19],[2027,9,15],"Economy, ads, 14-day closed test"],["P4 Soft launch",[2027,9,25],[2028,1,10],"Weekly KPI updates"]];
+const GT=[["G1 Concept",[2026,11,18],"18 Dec"],["M1 Greybox",[2027,1,5],"5 Feb",true],["G2 Slice",[2027,6,16],"~16 Jul"],["G3 Soft launch",[2027,9,22],"~22 Oct"],["G4 Launch",[2028,1,15],"~Feb 2028"]];
 document.getElementById('road').innerHTML=`<div class="months">${M.map(m=>`<span>${m}</span>`).join('')}</div>`+PH.map(([n,a,b,d,now])=>`<div class="phase"><div class="seg${now?' now':''}" style="left:${pct(a)}%;width:${pct(b)-pct(a)}%"><b>${n}</b><span>${d}</span></div></div>`).join('')+`<div class="gates">${GT.map(([n,d,l,m])=>`<div class="gate${m?' m':''}" style="left:${Math.min(pct(d),95)}%"><i></i><b>${n}</b><span>${l}</span></div>`).join('')}</div>`;
 </script>
