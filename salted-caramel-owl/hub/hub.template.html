@@ -1,0 +1,622 @@
+<title>Hollowguard Studio Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one long night-sky scroll; sticky nav; hero = pitch + playable light sandbox; prototype = phone + annotation rail.
+   Deliberately single-theme: the game's own night palette (from research/05-palette.json). */
+:root{
+  color-scheme: dark;
+  --sky:#070A1A; --night:#0B1026; --panel:#141B3D; --panel-2:#1F2A5A; --line:#2E3C78; --dusk:#4A5A9E;
+  --ground:#18233F; --path:#55608F;
+  --amber:#FFC15E; --caramel:#E8A33D; --caramel-ink:#5E3410; --sap:#FFE0A3; --sap-hot:#FFF1D0;
+  --salt:#FFF8EC; --moon:#DDE6FF; --muted:#9AA6D6;
+  --ink:#07060F; --rim:#A97BFF; --rim-soft:#3B2470; --danger:#F0407A; --owl:#8A5A3C; --owl-cream:#F3E3C3;
+  --f-display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:14px;
+}
+html{background:var(--sky)}
+body{background:var(--sky);color:var(--salt);font:16px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+a{color:var(--amber);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:800}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:600 .72rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--night) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;padding-block:10px;overflow-x:auto;scrollbar-width:none}
+nav.top .brand{display:flex;align-items:center;gap:8px;font:700 .95rem var(--f-display);white-space:nowrap;color:var(--salt);text-decoration:none}
+nav.top .links{display:flex;gap:16px;margin-left:auto}
+nav.top .links a{color:var(--muted);text-decoration:none;font-size:.88rem;white-space:nowrap}
+nav.top .links a:hover{color:var(--amber)}
+
+section{padding-block:72px;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;gap:10px;margin-bottom:32px;max-width:70ch}
+.sec-head p{color:var(--muted)}
+
+/* hero */
+.hero{padding-block:48px 64px;background:radial-gradient(1200px 500px at 80% 110%,rgba(255,193,94,.10),transparent 60%),radial-gradient(700px 400px at 10% -10%,rgba(169,123,255,.10),transparent 60%),var(--night)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center}
+.hero h1{font-size:clamp(3rem,8vw,6rem);font-weight:800;line-height:.92;letter-spacing:-.035em;margin-top:14px}
+.hero h1 .glow{color:var(--amber);text-shadow:0 0 28px rgba(255,193,94,.45)}
+.pitch{font-size:1.2rem;max-width:44ch;margin-top:18px;color:var(--moon)}
+.rulecard{margin-top:26px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:16px 18px;display:grid;gap:8px;max-width:520px}
+.rulecard ol{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.rulecard li{display:grid;grid-template-columns:2.2em 1fr;align-items:baseline}
+.rulecard li b{color:var(--sap)}
+.rulecard .k{font:600 .75rem var(--f-mono);color:var(--muted)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:.8rem;color:var(--moon);background:var(--night)}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--amber)}
+
+.sandbox{max-width:440px;width:100%;justify-self:center;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:14px;display:grid;gap:10px;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.sandbox svg{width:100%;height:auto;display:block;border-radius:12px;touch-action:manipulation}
+.sb-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.sb-stats{display:flex;gap:14px;font:600 .82rem var(--f-mono);color:var(--moon)}
+.sb-stats b{color:var(--amber)}
+.btn{appearance:none;border:1px solid var(--line);background:var(--night);color:var(--salt);border-radius:10px;padding:8px 12px;font:600 .85rem var(--f-body);cursor:pointer;min-height:40px}
+.btn:hover{border-color:var(--amber)}
+.btn.primary{background:var(--caramel);border-color:var(--caramel);color:var(--caramel-ink)}
+.btn.primary:hover{background:var(--amber)}
+.sb-msg{min-height:1.4em;font-size:.88rem;color:var(--sap)}
+
+/* prototype */
+.proto{display:grid;grid-template-columns:auto minmax(0,1fr);gap:40px;align-items:start}
+.phone-col{display:grid;gap:12px;justify-items:center;position:sticky;top:76px}
+.phone{width:340px;max-width:100%;aspect-ratio:390/844;border-radius:44px;background:#000;padding:10px;box-shadow:0 0 0 2px var(--line),0 40px 90px -30px rgba(0,0,0,.8)}
+.screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:var(--night);display:flex;flex-direction:column;font-size:12px;line-height:1.3;color:var(--moon)}
+.notch{height:26px;flex:none;display:flex;justify-content:center;align-items:center}
+.notch i{width:92px;height:20px;border-radius:12px;background:#000;display:block}
+.zone{padding:6px 10px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start}
+.zone.top{border-bottom:1px dashed var(--line);flex:none}
+.zone.middle{flex:1;min-height:0;overflow:auto;flex-direction:column;flex-wrap:nowrap}
+.zone.bottom{border-top:1px dashed var(--line);flex:none;padding-bottom:16px}
+.zone.map-mode{padding:0;gap:0}
+.home-ind{position:absolute;bottom:5px;left:50%;translate:-50% 0;width:110px;height:4px;border-radius:3px;background:var(--muted);opacity:.6}
+.el{border:1px solid var(--dusk);border-radius:8px;padding:5px 7px;background:var(--panel);color:var(--moon);font:inherit;text-align:left;min-width:0;max-width:100%;overflow-wrap:anywhere}
+.el.t-label{border:none;background:none;padding:2px 2px;color:var(--salt);font-weight:700}
+.el.t-icon{border-style:dotted;background:none}
+.el.t-button{background:var(--panel-2)}
+.el.primary{background:var(--caramel);border-color:var(--caramel);color:var(--caramel-ink);font-weight:700}
+.el.t-card{width:100%;padding:8px 9px;border-color:var(--line)}
+.el.t-list{width:100%;border-style:solid;border-color:var(--line);background:repeating-linear-gradient(180deg,transparent 0 17px,rgba(154,166,214,.12) 17px 18px);padding-top:4px}
+.el.t-grid{width:100%;min-height:70px;background:var(--panel) repeating-linear-gradient(90deg,transparent 0 30px,rgba(154,166,214,.14) 30px 32px)}
+.el.t-bar{width:100%;position:relative;padding-top:13px;border-color:var(--line)}
+.el.t-bar::before{content:"";position:absolute;left:7px;right:7px;top:5px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--amber) 0 62%,var(--rim-soft) 62%)}
+.el.t-sheet{width:100%;border-color:var(--amber);border-style:dashed;background:rgba(255,193,94,.05)}
+.el.t-toast{border-radius:999px;background:var(--salt);color:var(--night);border:none;font-weight:700;align-self:center}
+.el.t-map{width:100%;min-height:150px;flex:1;display:grid;place-items:center;text-align:center;border-style:dashed;border-color:var(--line);color:var(--muted);background:repeating-linear-gradient(135deg,rgba(74,90,158,.12) 0 6px,transparent 6px 12px)}
+.el.go{cursor:pointer;outline:1px solid transparent}
+.show-hot .el.go{box-shadow:0 0 0 2px rgba(255,193,94,.55)}
+.el.go:hover{border-color:var(--amber)}
+.el.active{box-shadow:0 0 0 2px var(--salt)!important}
+.zone.top .el.t-bar{width:100%}
+.overlay{position:absolute;inset:26px 0 0;background:rgba(7,10,26,.72);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:18px;z-index:2}
+.overlay .el{width:100%}
+.mapwrap{position:relative;flex:1;min-height:0;display:flex}
+.mapwrap svg{width:100%;height:100%;display:block}
+.toast-float{position:absolute;left:50%;bottom:10px;translate:-50% 0;background:var(--salt);color:var(--night);font-weight:700;border-radius:999px;padding:5px 10px;font-size:11px;white-space:nowrap}
+
+.rail{display:grid;gap:18px;min-width:0}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.groups{display:grid;gap:10px}
+.group{display:grid;gap:6px}
+.group .eyebrow{font-size:.66rem}
+.screen-chips{display:flex;flex-wrap:wrap;gap:6px}
+.screen-chips button{appearance:none;border:1px solid var(--line);background:var(--night);color:var(--moon);border-radius:999px;padding:5px 11px;font:500 .8rem var(--f-body);cursor:pointer;min-height:32px}
+.screen-chips button[aria-current="true"]{background:var(--amber);color:var(--caramel-ink);border-color:var(--amber);font-weight:700}
+.panel{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:16px 18px;display:grid;gap:10px;min-width:0}
+.panel h3{font-size:1.3rem}
+.note-box{border-left:3px solid var(--amber);padding:8px 12px;background:var(--night);border-radius:0 8px 8px 0;font-size:.92rem;min-height:3.2em}
+.panel ul{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--moon);font-size:.92rem}
+.toggle{display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--muted)}
+
+/* game */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:.9rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .7rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--night)}
+tbody tr:last-child td{border-bottom:none}
+td .mono{color:var(--sap)}
+.cls{display:inline-flex;gap:6px;align-items:center;font-size:.78rem;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.cls.owl{background:rgba(138,90,60,.35);color:var(--owl-cream)}
+.cls.lb{background:rgba(255,193,94,.15);color:var(--amber)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:28px}
+.enemies{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.enemy{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--night);display:grid;gap:4px}
+.enemy b{font-family:var(--f-display)}
+.enemy .tag{font:600 .66rem var(--f-mono);letter-spacing:.08em;color:var(--rim);text-transform:uppercase}
+.enemy.boss{grid-column:1/-1;border-color:var(--rim);background:linear-gradient(90deg,rgba(59,36,112,.5),var(--night))}
+.levels{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;align-items:end;height:170px;margin-top:8px}
+.lv{display:grid;gap:4px;align-content:end;text-align:center;height:100%}
+.lv .bar{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--amber),var(--caramel-ink));min-height:8px}
+.lv .n{font:600 .72rem var(--f-mono);color:var(--muted)}
+.lv-list{display:grid;gap:4px;margin-top:14px;font-size:.88rem}
+.lv-list div{display:grid;grid-template-columns:2em 1fr;gap:6px}
+.lv-list span:first-child{font-family:var(--f-mono);color:var(--muted)}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.member{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:16px;display:grid;gap:8px;grid-template-rows:auto auto 1fr auto}
+.member .role{display:flex;gap:10px;align-items:center}
+.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--night);border:1px solid var(--line);flex:none}
+.member p{font-size:.9rem;color:var(--moon)}
+.member a{font-size:.82rem}
+.member.lead{border-color:var(--amber);background:linear-gradient(160deg,rgba(255,193,94,.10),var(--panel) 50%)}
+
+/* decisions */
+.pill{display:inline-block;font:600 .68rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 8px;white-space:nowrap}
+.pill.d{background:rgba(255,193,94,.16);color:var(--amber)}
+.pill.o{background:var(--rim);color:var(--ink)}
+
+/* roadmap */
+.road{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+.road-inner{min-width:760px;padding:18px;display:grid;gap:10px}
+.months{display:grid;grid-template-columns:repeat(12,1fr);font:600 .68rem var(--f-mono);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:6px}
+.phase{position:relative;height:44px}
+.phase .seg{position:absolute;top:0;bottom:0;border-radius:8px;background:var(--panel-2);border:1px solid var(--line);padding:5px 9px;display:grid;align-content:center;overflow:hidden}
+.phase .seg b{font-size:.82rem;white-space:nowrap}
+.phase .seg span{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.phase .seg.now{border-color:var(--amber);background:linear-gradient(90deg,rgba(255,193,94,.22),var(--panel-2))}
+.gates{position:relative;height:58px;border-top:1px dashed var(--line)}
+.gate{position:absolute;top:8px;translate:-50% 0;display:grid;justify-items:center;gap:2px;font-size:.72rem;text-align:center;white-space:nowrap}
+.gate i{width:12px;height:12px;rotate:45deg;background:var(--amber);display:block}
+.gate.m i{background:var(--dusk)}
+.gate span{color:var(--muted);font-family:var(--f-mono)}
+
+/* owner */
+.asks{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ask{border:1px solid var(--rim);border-radius:var(--r);background:var(--panel);padding:18px;display:grid;gap:10px;align-content:start}
+.ask .q{font:700 1.08rem/1.3 var(--f-display)}
+.ask ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.9rem}
+.ask li{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--night)}
+.ask li.rec{border-color:var(--amber)}
+.ask li.rec::after{content:"Lead recommends";display:block;font:600 .64rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-top:3px}
+.foot{padding-block:40px 60px;color:var(--muted);font-size:.88rem}
+.foot .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.foot ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
+
+@media (max-width:900px){
+  .hero .wrap,.proto,.two,.foot .cols{grid-template-columns:minmax(0,1fr)}
+  .phone-col{position:static}
+  section{padding-block:52px}
+}
+@media (max-width:560px){ .levels{gap:3px} .lv-list{font-size:.84rem} }
+@media (prefers-reduced-motion:no-preference){
+  .pulse{animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.55}}
+}
+</style>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Salted Caramel Owl, top">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9c0-4 3.5-6 8-6s8 2 8 6v6c0 4-3.6 6-8 6s-8-2-8-6z" fill="#8A5A3C"/><circle cx="8.6" cy="10.5" r="3" fill="#F3E3C3"/><circle cx="15.4" cy="10.5" r="3" fill="#F3E3C3"/><circle cx="8.6" cy="10.5" r="1.4" fill="#FFC15E"/><circle cx="15.4" cy="10.5" r="1.4" fill="#FFC15E"/><path d="M11 14h2l-1 2z" fill="#E8A33D"/></svg>
+      Salted Caramel Owl
+    </a>
+    <div class="links">
+      <a href="#prototype">Prototype</a><a href="#game">Game</a><a href="#team">Team</a><a href="#decisions">Decisions</a><a href="#roadmap">Roadmap</a><a href="#you">Your calls</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Salted Caramel Owl · Pre-production · 23 Nov 2026</div>
+      <h1>Hollow<span class="glow">guard</span></h1>
+      <p class="pitch">A portrait, one-thumb tower defense. You hold back the night one lantern at a time: you can only build on lit ground, shadow creatures snuff your lights, and only your owls keep fighting in the dark.</p>
+      <div class="rulecard">
+        <div class="eyebrow">The hook, on one card</div>
+        <ol>
+          <li><span class="k">R1</span><span><b>Light lets you build.</b> Every tile is lit or dark; you can build and upgrade only on lit spots.</span></li>
+          <li><span class="k">R2</span><span><b>Lightbound needs light.</b> Squirrel, mushroom and crystal towers hit hardest, but sleep in the dark.</span></li>
+          <li><span class="k">R3</span><span><b>Owls don't.</b> Owl towers are weaker per sap, but they fight on in darkness.</span></li>
+          <li><span class="k">R4</span><span><b>The night takes ground back.</b> It creeps down from the top, and Saboteurs snuff your lanterns.</span></li>
+        </ol>
+      </div>
+      <div class="meta-row">
+        <span class="chip"><span class="dot"></span>iOS + Android</span>
+        <span class="chip"><span class="dot"></span>Godot 4.7</span>
+        <span class="chip"><span class="dot"></span>Fair free-to-play, no energy</span>
+        <span class="chip"><span class="dot"></span>3–6 min levels</span>
+      </div>
+    </div>
+    <div class="sandbox" aria-label="Light is territory sandbox">
+      <div class="sb-bar">
+        <div class="eyebrow">Try the hook · tap a lit ring</div>
+        <div class="sb-stats"><span>Buildable <b id="sb-build">0</b>/<span id="sb-total">0</span></span><span>Night <b id="sb-night">0</b>/3</span></div>
+      </div>
+      <div id="sandbox-map"></div>
+      <div class="sb-msg" id="sb-msg" role="status">Tap a lit spot to place a Glowcap Lantern (80 sap). It claims new ground.</div>
+      <div class="sb-bar">
+        <div class="sb-stats"><span>Sap <b id="sb-sap">240</b></span></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn" id="sb-reset" type="button">Reset</button>
+          <button class="btn primary" id="sb-night-btn" type="button">Advance the night</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="prototype">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Wireframes · 22 screens · 390 × 844 portrait</div>
+      <h2>Click through the game</h2>
+      <p>This is the UX Designer's full screen spec, rendered live. Glowing outlines mark taps that lead somewhere. In the in-level screens, tap a lit ring to build or a tower to upgrade. Hover or focus any element to read the designer's note.</p>
+    </div>
+    <div class="proto">
+      <div class="phone-col">
+        <div class="phone"><div class="screen" id="screen"></div></div>
+        <label class="toggle"><input type="checkbox" id="hot" checked> Show tap targets</label>
+      </div>
+      <div class="rail">
+        <div class="crumbs">
+          <button class="btn" id="back" type="button">← Back</button>
+          <button class="btn" id="restart" type="button">Start from splash</button>
+          <span class="muted mono" id="pos"></span>
+        </div>
+        <div class="panel">
+          <div class="eyebrow" id="sid"></div>
+          <h3 id="sname"></h3>
+          <p class="muted" id="spurpose"></p>
+          <div class="note-box" id="note" role="status">Hover an element to see why it is where it is.</div>
+        </div>
+        <div class="panel">
+          <div class="eyebrow">Designer annotations</div>
+          <ul id="sann"></ul>
+        </div>
+        <div class="groups" id="groups"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="game">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">GDD v0.1 · vertical slice</div>
+      <h2>What's in the first world</h2>
+      <p>Six towers in two classes, one hero, eight enemies and a boss across 10 levels of World 1, "The Rootwood". Every tier-3 tower splits into two branches. Neither branch strictly beats the other, so there is no single "super tower".</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tower</th><th>Class</th><th>Role</th><th>Cost</th><th>Tier 3 branches</th></tr></thead>
+        <tbody>
+          <tr><td><b>Talon Roost</b><br><span class="muted">barn owls</span></td><td><span class="cls owl">Owl · fights in dark</span></td><td>Cheap single-target damage, holds the edge</td><td class="mono">70</td><td>Hawkeye Perch · Twin Talons</td></tr>
+          <tr><td><b>Burrow Gate</b><br><span class="muted">burrowing owls</span></td><td><span class="cls owl">Owl · fights in dark</span></td><td>Blockers that hold kill zones</td><td class="mono">90</td><td>Bramble Wardens · Night Raiders</td></tr>
+          <tr><td><b>Screech Spire</b><br><span class="muted">screech owls</span></td><td><span class="cls owl">Owl · fights in dark</span></td><td>Pulse area damage and slow; hits flyers</td><td class="mono">100</td><td>Hush Spire · Shatter Cry</td></tr>
+          <tr><td><b>Glowcap Lantern</b><br><span class="muted">firefly mushroom</span></td><td><span class="cls lb">Lightbound · is a light</span></td><td>Claims territory; no attack</td><td class="mono">80</td><td>Sunstone Beacon · Will-o'-Wick</td></tr>
+          <tr><td><b>Pinecone Lobber</b><br><span class="muted">red squirrels</span></td><td><span class="cls lb">Lightbound · sleeps in dark</span></td><td>Ground splash; can't hit flyers</td><td class="mono">110</td><td>Resin Bomb · Thornburst</td></tr>
+          <tr><td><b>Moonglass Prism</b><br><span class="muted">crystal</span></td><td><span class="cls lb">Lightbound · sleeps in dark</span></td><td>Ramping beam, anti-tank; lit targets only</td><td class="mono">140</td><td>Lunar Lance · Refractor</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="two">
+      <div>
+        <h3 style="margin-bottom:12px">The night's army</h3>
+        <div class="enemies">
+          <div class="enemy"><span class="tag">grunt</span><b>Nightling</b><span class="muted">Baseline. Teaches everything.</span></div>
+          <div class="enemy"><span class="tag">swarm</span><b>Skitterdark</b><span class="muted">Packs of 6–10, fast and fragile.</span></div>
+          <div class="enemy"><span class="tag">tank</span><b>Mirebrute</b><span class="muted">450 HP, 50% physical armour.</span></div>
+          <div class="enemy"><span class="tag">flyer</span><b>Dusk Moth</b><span class="muted">Flies over blockers.</span></div>
+          <div class="enemy"><span class="tag">saboteur</span><b>Snuffer</b><span class="muted">Puts lanterns out for 5 s.</span></div>
+          <div class="enemy"><span class="tag">saboteur</span><b>Murk Crawler</b><span class="muted">Leaves a trail of dark tiles.</span></div>
+          <div class="enemy"><span class="tag">saboteur</span><b>Inkbloat</b><span class="muted">Bursts into a dark cloud on death.</span></div>
+          <div class="enemy"><span class="tag">saboteur</span><b>Nightweaver</b><span class="muted">Shrouds allies so they count as "in the dark".</span></div>
+          <div class="enemy boss"><span class="tag">boss · level 10</span><b>Nyxmaw, the Hollow Eclipse</b><span class="muted">Phase 3, Total Eclipse: the whole map goes dark for 8 s and only your owls can fight. The exam on everything World 1 taught.</span></div>
+        </div>
+      </div>
+      <div>
+        <h3>Difficulty: one idea per level</h3>
+        <p class="muted" style="font-size:.9rem;margin-top:4px">Bar height shows relative difficulty. Levels that introduce a new tool ease off; levels that mix tools spike.</p>
+        <div class="levels" id="levels" aria-hidden="true"></div>
+        <div class="lv-list" id="lvlist"></div>
+        <div class="panel" style="margin-top:16px">
+          <div class="eyebrow">Hero</div>
+          <p><b>Umber the Lamplighter</b>, an eagle-owl. His lantern-staff is a light that moves with him, so wherever he parks becomes buildable. <b>Dawnburst</b> lights a wide area for 8 s; <b>Silent Dive</b> stuns and picks off Saboteurs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">The studio · 7 AI specialists + Lead</div>
+      <h2>Who did what</h2>
+      <p>Each specialist researched its area in parallel and wrote a decision doc. The Lead resolved the conflicts between them and reports to you.</p>
+    </div>
+    <div class="team" id="teamgrid"></div>
+  </div>
+</section>
+
+<section id="decisions">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Decisions log v0.2</div>
+      <h2>Already decided, so you don't have to</h2>
+      <p>These calls stand until you override them. Purple rows are waiting on you.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:2.5em">#</th><th>Topic</th><th>Ruling</th><th>Why</th><th>Status</th></tr></thead>
+        <tbody id="dec"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Roadmap · Nov 2026 → Nov 2027</div>
+      <h2>Four gates, and you approve each one</h2>
+      <p>Agents work between gates; you approve at the diamonds. Each phase carries about 15% slack, and any slip over a week reaches you in the Monday digest.</p>
+    </div>
+    <div class="road"><div class="road-inner" id="road"></div></div>
+  </div>
+</section>
+
+<section id="you">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Needs the Owner · 4 decisions</div>
+      <h2>Your calls</h2>
+      <p>Only these need you. Each has a recommendation; replying "go with your picks" is a valid answer.</p>
+    </div>
+    <div class="asks">
+      <div class="ask"><div class="eyebrow">Budget</div><div class="q">What monthly spend cap do the agents get?</div><ul><li>Lean, ~$1k/mo: slower and fewer parallel agents; the vertical slice slips about 2 months</li><li class="rec">Standard, ~$3k/mo: matches the roadmap above</li><li>Fast, ~$5k/mo: more parallel engineers and some buffer</li></ul><p class="muted" style="font-size:.82rem">These are Ops estimates, not quotes. Tooling (CI, crash reporting, analytics) adds about $50/mo; paid art and audio tool plans are extra.</p></div>
+      <div class="ask"><div class="eyebrow">Publisher</div><div class="q">Do we publish as a company or as you personally?</div><ul><li class="rec">Organization: needs a legal entity and a D-U-N-S number; looks more trustworthy on the store</li><li>Individual: faster to set up, but your name shows on the store page. New personal Google Play accounts reportedly must run a 12-tester, 14-day closed test first (unverified)</li></ul></div>
+      <div class="ask"><div class="eyebrow">Ownership</div><div class="q">Who makes the logo, key art and main theme?</div><ul><li>You add real creative input yourself</li><li class="rec">We hire a human freelancer for those 3 assets, so we own their copyright</li><li>AI only: allowed in the stores, but in the US those assets can't be copyrighted; we protect the brand with a trademark only</li></ul></div>
+      <div class="ask"><div class="eyebrow">Home</div><div class="q">Where does the game's code live?</div><ul><li class="rec">A new dedicated repo (for example <span class="mono">hollowguard</span>): you create it and I attach it. Its GitHub issues become the agents' task board</li><li>Keep it in <span class="mono">thmsgbrt</span>: works, but mixes the game with your profile-README project</li></ul></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap cols">
+    <div>
+      <div class="eyebrow">Read the full docs (GitHub, branch claude/tower-defense-planning-ar0m3u)</div>
+      <ul id="doclinks"></ul>
+    </div>
+    <div>
+      <div class="eyebrow">How sure are we</div>
+      <p style="margin-top:6px">This session's network blocked most research sites, so many market figures, store rules and design citations come from search-result snippets. The docs mark each of them "unverified". Before the soft-launch gate, the Release agent re-checks every store and legal rule against the official pages. The engine choice was tested directly: Godot ran a 200-enemy headless simulation in this container in 0.5 s and gave the same result twice.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SCREENS = __SCREENS__;
+const GH = "https://github.com/osama-kj97/thmsgbrt/blob/claude/tower-defense-planning-ar0m3u/salted-caramel-owl/";
+
+/* ---------- Light-territory map model (shared by sandbox + HUD wireframes) ---------- */
+const COLS=9, ROWS=13, T=40;
+const WAY=[[4,0],[4,2],[7,2],[7,5],[1,5],[1,8],[6,8],[6,10],[3,10],[3,12]];
+const PATH=(()=>{const out=[];for(let i=0;i<WAY.length-1;i++){let [x,y]=WAY[i];const [x2,y2]=WAY[i+1];while(x!==x2||y!==y2){out.push([x,y]);x+=Math.sign(x2-x);y+=Math.sign(y2-y);}}out.push(WAY[WAY.length-1]);return out;})();
+const onPath=(c,r)=>PATH.some(p=>p[0]===c&&p[1]===r);
+const SPOTS=[[2,3],[5,3],[8,4],[3,4],[0,6],[3,6],[5,6],[8,6],[0,9],[3,9],[5,9],[8,9],[1,11],[5,11]].filter(s=>!onPath(s[0],s[1]));
+function sources(st){
+  const s=[{c:3,r:12.6,rad:3.1}];
+  const mp=3.2-st.night*0.9; if(mp>0.4) s.push({c:5.2,r:4.2,rad:mp,moon:true});
+  (st.lanterns||[]).forEach(k=>{const [c,r]=SPOTS[k];s.push({c,r,rad:2.5});});
+  if(st.hero) s.push({c:st.hero[0],r:st.hero[1],rad:1.5});
+  if(st.burst) s.push({c:st.burst[0],r:st.burst[1],rad:3});
+  return s;
+}
+function litFn(st){const S=sources(st);return (c,r)=>S.some(s=>Math.hypot(c-s.c,r-s.r)<=s.rad+0.05);}
+function mapSVG(st,opt={}){
+  const lit=litFn(st), W=COLS*T, H=ROWS*T; let g='';
+  g+=`<defs><pattern id="hatch${opt.id||''}" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#141733"/><line x1="0" y1="0" x2="0" y2="8" stroke="#3B2470" stroke-width="2.2"/></pattern>
+  <radialGradient id="glow${opt.id||''}"><stop offset="0" stop-color="#FFE0A3" stop-opacity=".55"/><stop offset="1" stop-color="#FFC15E" stop-opacity="0"/></radialGradient></defs>`;
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+    const L=lit(c,r), p=onPath(c,r);
+    g+=`<rect x="${c*T}" y="${r*T}" width="${T}" height="${T}" fill="${L?(p?'#4E5478':'#2A3152'):(p?'#323760':`url(#hatch${opt.id||''})`)}"/>`;
+    if(L) g+=`<rect x="${c*T}" y="${r*T}" width="${T}" height="${T}" fill="#FFC15E" opacity="${p?0.10:0.16}"/>`;
+  }
+  // frontier edges
+  let fr='';
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){ if(!lit(c,r))continue;
+    if(c+1<COLS&&!lit(c+1,r)) fr+=`M${(c+1)*T} ${r*T}v${T}`; if(c>0&&!lit(c-1,r)) fr+=`M${c*T} ${r*T}v${T}`;
+    if(r+1<ROWS&&!lit(c,r+1)) fr+=`M${c*T} ${(r+1)*T}h${T}`; if(r>0&&!lit(c,r-1)) fr+=`M${c*T} ${r*T}h${T}`;}
+  g+=`<path d="${fr}" stroke="#FFC15E" stroke-width="2.5" stroke-dasharray="5 4" fill="none" opacity=".9"/>`;
+  // light glows
+  sources(st).forEach(s=>{g+=`<circle cx="${(s.c+.5)*T}" cy="${(s.r+.5)*T}" r="${s.rad*T*0.75}" fill="url(#glow${opt.id||''})" opacity="${s.moon?0.5:0.8}"/>`;});
+  // moonpool marker
+  const mp=sources(st).find(s=>s.moon); if(mp) g+=`<g transform="translate(${(mp.c+.5)*T},${(mp.r+.5)*T})" opacity=".9"><circle r="9" fill="#DDE6FF"/><circle r="8" cx="4" cy="-3" fill="#2A3152"/></g>`;
+  // Hollow Tree
+  g+=`<g transform="translate(${3.5*T},${12.55*T})"><ellipse rx="42" ry="10" cy="14" fill="#2B1F24"/><path d="M-12 14 C-10 -4,-14 -14,-4 -22 L4 -22 C14 -14,10 -4,12 14Z" fill="#5C4038"/><circle cy="-30" r="22" fill="#1C3B4A"/><circle cx="-16" cy="-22" r="14" fill="#1C3B4A"/><circle cx="16" cy="-22" r="14" fill="#1C3B4A"/><ellipse cy="0" rx="5" ry="7" fill="#FFC15E"/></g>`;
+  // spots, towers
+  const towers=st.towers||{};
+  SPOTS.forEach(([c,r],k)=>{
+    const x=(c+.5)*T,y=(r+.5)*T,L=lit(c,r),tw=towers[k],lan=(st.lanterns||[]).includes(k);
+    const sel=opt.selected===k;
+    let inner='';
+    if(lan){inner=`<rect x="-9" y="-13" width="18" height="22" rx="6" fill="#E8A33D"/><circle cy="-2" r="6" fill="#FFF1D0"/><rect x="-4" y="-17" width="8" height="5" rx="2" fill="#5E3410"/>`;}
+    else if(tw==='owl'){inner=`<rect x="-12" y="-12" width="24" height="24" rx="8" fill="#8A5A3C"/><circle cx="-5" cy="-2" r="5" fill="#F3E3C3"/><circle cx="5" cy="-2" r="5" fill="#F3E3C3"/><circle cx="-5" cy="-2" r="2" fill="#1a1208"/><circle cx="5" cy="-2" r="2" fill="#1a1208"/>`;}
+    else if(tw==='lb'){inner=`<path d="M0 -14 L13 0 L0 14 L-13 0Z" fill="${L?'#FFC15E':'#4A5A9E'}"/><path d="M0 -7 L6 0 L0 7 L-6 0Z" fill="${L?'#FFF1D0':'#2E3C78'}"/>`+(L?'':`<text x="9" y="-9" font-size="10" font-weight="700" fill="#DDE6FF" font-family="sans-serif">zz</text>`);}
+    else if(L){inner=`<circle r="14" fill="none" stroke="#FFC15E" stroke-width="2.5"/><circle r="4" fill="#FFC15E"/>`+[0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4;return `<line x1="${Math.cos(a)*6.5}" y1="${Math.sin(a)*6.5}" x2="${Math.cos(a)*9}" y2="${Math.sin(a)*9}" stroke="#FFC15E" stroke-width="1.6"/>`}).join('');}
+    else {inner=`<circle r="14" fill="none" stroke="#9AA6D6" stroke-width="2" stroke-dasharray="4 3"/><circle r="5" fill="#DDE6FF"/><circle r="4.6" cx="2.6" cy="-1.6" fill="#141733"/>`;}
+    const kind=lan?'lantern':(tw?'tower':(L?'lit':'dark'));
+    g+=`<g class="spot" data-k="${k}" data-kind="${kind}" transform="translate(${x},${y})" style="cursor:pointer"><circle r="19" fill="transparent"/>${sel?`<circle r="${opt.ring?opt.ring*T:20}" fill="${opt.ring?'rgba(255,193,94,.08)':'none'}" stroke="#FFF8EC" stroke-width="2" ${opt.ring?'stroke-dasharray="6 5"':''}/>`:''}${inner}</g>`;
+  });
+  if(opt.ghost!=null){const [c,r]=SPOTS[opt.ghost];g+=`<g transform="translate(${(c+.5)*T},${(r+.5)*T})"><circle r="${3*T}" fill="rgba(255,193,94,.07)" stroke="#FFC15E" stroke-dasharray="6 5" stroke-width="2"/><rect x="-12" y="-12" width="24" height="24" rx="8" fill="#8A5A3C" opacity=".6"/><circle r="20" fill="none" stroke="#FFF8EC" stroke-width="2.5"/></g>`;}
+  // hero
+  if(st.hero){const [c,r]=st.hero;g+=`<g transform="translate(${(c+.5)*T},${(r+.5)*T})"><circle r="${1.5*T}" fill="none" stroke="#FFE0A3" stroke-width="1.5" stroke-dasharray="2 4"/><circle r="13" fill="#5C4038" stroke="#FFE0A3" stroke-width="2"/><circle cx="-5" cy="-2" r="4" fill="#FFC15E"/><circle cx="5" cy="-2" r="4" fill="#FFC15E"/><path d="M-9 -10 l4 5 M9 -10 l-4 5" stroke="#F3E3C3" stroke-width="2.5"/></g>`;}
+  // enemies
+  (st.enemies||[]).forEach(([i,type])=>{const [c,r]=PATH[i];const x=(c+.5)*T,y=(r+.5)*T;
+    g+=`<g transform="translate(${x},${y})"><circle r="${type==='big'?13:9}" fill="#07060F" stroke="#A97BFF" stroke-width="2.5"/><circle cx="-3" cy="-2" r="1.8" fill="#EBDDFF"/><circle cx="3" cy="-2" r="1.8" fill="#EBDDFF"/>${type==='snuff'?'<path d="M-6 -15 L0 -9 L6 -15" stroke="#A97BFF" stroke-width="2" fill="none"/>':''}</g>`;});
+  if(opt.spawnArrows){g+=`<g class="pulse">${[0,1].map(i=>`<path d="M${4.5*T-14} ${6+i*14} l14 10 l14 -10" stroke="#F0407A" stroke-width="3" fill="none"/>`).join('')}</g>`;}
+  if(opt.reticle){const [c,r]=opt.reticle;g+=`<g transform="translate(${(c+.5)*T},${(r+.5)*T})"><circle r="${3*T}" fill="rgba(255,224,163,.12)" stroke="#FFE0A3" stroke-width="2.5" stroke-dasharray="8 6"/><path d="M-12 0h24M0 -12v24" stroke="#FFF8EC" stroke-width="2"/></g>`;}
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${opt.label||'Map'}">${g}</svg>`;
+}
+
+/* ---------- Sandbox ---------- */
+const sb={night:0,lanterns:[],sap:240,towers:{}};
+function sbRender(){
+  const el=document.getElementById('sandbox-map');
+  el.innerHTML=mapSVG(sb,{id:'sb',label:'Playable light territory map'});
+  const lit=litFn(sb);
+  const free=SPOTS.filter(([c,r],k)=>!sb.lanterns.includes(k)&&!sb.towers[k]);
+  document.getElementById('sb-build').textContent=free.filter(([c,r])=>lit(c,r)).length;
+  document.getElementById('sb-total').textContent=free.length;
+  document.getElementById('sb-night').textContent=sb.night;
+  document.getElementById('sb-sap').textContent=sb.sap;
+  el.querySelectorAll('.spot').forEach(n=>n.addEventListener('click',()=>{
+    const k=+n.dataset.k, kind=n.dataset.kind, msg=document.getElementById('sb-msg');
+    if(kind==='dark'){msg.textContent='Too dark to build here. Place a lantern nearby to claim this ground first.';return;}
+    if(kind!=='lit'){msg.textContent='That spot is taken.';return;}
+    if(sb.sap<80){msg.textContent='Out of sap. In the real game, kills earn more. Hit Reset to try again.';return;}
+    const before=SPOTS.filter(([c,r])=>litFn(sb)(c,r)).length;
+    sb.lanterns.push(k); sb.sap-=80;
+    const after=SPOTS.filter(([c,r])=>litFn(sb)(c,r)).length;
+    msg.textContent=`Lantern lit. It claimed ${Math.max(0,after-before)} new build spot${after-before===1?'':'s'}. Now try advancing the night.`;
+    sbRender();
+  }));
+}
+document.getElementById('sb-night-btn').addEventListener('click',()=>{
+  const msg=document.getElementById('sb-msg');
+  if(sb.night>=3){msg.textContent='The moon has set. Only your lanterns and the Hollow Tree hold light now. In a real level, dawn comes next.';return;}
+  sb.night++; sb.sap+=15;
+  msg.textContent=['','The moonpool shrinks. Ground near the top goes dark, so Lightbound towers there would sleep.','Night creeps closer. Your lanterns are now your territory. +15 sap tithe.','The moon is gone. This is when owls earn their keep: they fight on in the dark.'][sb.night];
+  sbRender();
+});
+document.getElementById('sb-reset').addEventListener('click',()=>{sb.night=0;sb.lanterns=[];sb.sap=240;document.getElementById('sb-msg').textContent='Tap a lit spot to place a Glowcap Lantern (80 sap). It claims new ground.';sbRender();});
+sbRender();
+
+/* ---------- Wireframe prototype ---------- */
+const BY=Object.fromEntries(SCREENS.map(s=>[s.id,s]));
+const HUD_STATE={night:1,lanterns:[5],towers:{6:'owl',9:'owl',10:'lb',3:'lb'},hero:[1,7],enemies:[[2,''],[6,'snuff'],[9,'']]};
+const HUD={
+  hud_default:{st:HUD_STATE,opt:{}},
+  hud_build_open:{st:HUD_STATE,opt:{ghost:7}},
+  hud_tower_selected:{st:HUD_STATE,opt:{selected:6,ring:3.3}},
+  hud_wave_incoming:{st:{...HUD_STATE,enemies:[]},opt:{spawnArrows:true}},
+  hud_ability_target:{st:HUD_STATE,opt:{reticle:[5,7]}},
+  tutorial_overlay:{st:{night:0,lanterns:[],towers:{},enemies:[]},opt:{selected:9}}
+};
+const GROUPS=[["Onboarding",["splash","consent","intro_story","tutorial_overlay"]],["Hub & meta",["home","world_map","level_briefing","roster","hero_detail","research","shop","codex","settings","settings_accessibility"]],["In a level",["hud_default","hud_build_open","hud_tower_selected","hud_wave_incoming","hud_ability_target","pause","victory","defeat"]]];
+let cur='home', hist=[];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function isPrimary(e){return /primary/i.test(e.note)||/^(PLAY|Play |Next Level|Defend|Start|Continue)/.test(e.label);}
+function elHTML(e,i){
+  const cls=['el','t-'+e.type]; if(e.goto&&BY[e.goto]) cls.push('go'); if(e.type==='button'&&isPrimary(e)) cls.push('primary');
+  const tag=e.goto?'button':'div';
+  return `<${tag} ${tag==='button'?'type="button"':'tabindex="0"'} class="${cls.join(' ')}" data-i="${i}" ${e.goto?`data-goto="${e.goto}"`:''}>${esc(e.label)}</${tag}>`;
+}
+function render(){
+  const s=BY[cur], scr=document.getElementById('screen'); const flat=[];
+  let html='<div class="notch"><i></i></div>';
+  const zones={top:[],middle:[],bottom:[],overlay:[]};
+  s.regions.forEach(r=>r.elements.forEach(e=>{flat.push(e);zones[r.zone]?.push([e,flat.length-1]);}));
+  const hud=HUD[cur];
+  html+=`<div class="zone top">${zones.top.map(([e,i])=>elHTML(e,i)).join('')}</div>`;
+  if(hud){
+    const toast=zones.middle.find(([e])=>e.type==='toast');
+    html+=`<div class="zone middle map-mode"><div class="mapwrap">${mapSVG(hud.st,{...hud.opt,id:cur,label:s.name})}${toast&&cur!=='hud_default'?`<div class="toast-float">${esc(toast[0].label)}</div>`:''}</div></div>`;
+  } else {
+    html+=`<div class="zone middle">${zones.middle.map(([e,i])=>elHTML(e,i)).join('')}</div>`;
+  }
+  html+=`<div class="zone bottom">${zones.bottom.map(([e,i])=>elHTML(e,i)).join('')}</div>`;
+  if(zones.overlay.length) html+=`<div class="overlay">${zones.overlay.map(([e,i])=>elHTML(e,i)).join('')}</div>`;
+  html+='<div class="home-ind"></div>';
+  scr.innerHTML=html;
+  // map interactions
+  if(hud){
+    scr.querySelectorAll('.spot').forEach(n=>n.addEventListener('click',()=>{
+      const kind=n.dataset.kind;
+      if(cur==='tutorial_overlay'){go('hud_default');return;}
+      if(kind==='lit') go('hud_build_open');
+      else if(kind==='tower'||kind==='lantern') go('hud_tower_selected');
+      else showNote('Dark spot: "Too dark to build here. Extend light with a Glowcap Lantern." Taps never open the build tray on dark ground.');
+    }));
+  }
+  scr.querySelectorAll('.el').forEach(n=>{
+    const e=flat[+n.dataset.i];
+    const show=()=>{scr.querySelectorAll('.el.active').forEach(x=>x.classList.remove('active'));n.classList.add('active');showNote(`<b>${esc(e.label)}</b>${e.note?' · '+esc(e.note):''}${e.goto?` <span class="muted">→ ${esc(BY[e.goto]?.name||e.goto)}</span>`:''}`,true);};
+    n.addEventListener('mouseenter',show); n.addEventListener('focus',show);
+    if(e.goto&&BY[e.goto]) n.addEventListener('click',()=>go(e.goto));
+  });
+  document.getElementById('sid').textContent=s.id;
+  document.getElementById('sname').textContent=s.name;
+  document.getElementById('spurpose').textContent=s.purpose;
+  const extra = hud ? zones.middle.filter(([e])=>e.type!=='map').map(([e])=>`<li><b>On map:</b> ${esc(e.label)}${e.note?' · <span class="muted">'+esc(e.note)+'</span>':''}</li>`) : [];
+  document.getElementById('sann').innerHTML=(s.annotations.map(a=>`<li>${esc(a)}</li>`).concat(extra).join(''))||'<li class="muted">No annotations for this screen.</li>';
+  showNote(hud?'This is a live map: lit rings (sun) open the build tray, towers open upgrades, and dashed rings (moon) are too dark to build on.':'Hover or focus an element to see why it is where it is.',true);
+  document.querySelectorAll('#groups button').forEach(b=>b.setAttribute('aria-current',b.dataset.id===cur?'true':'false'));
+  document.getElementById('pos').textContent=`${SCREENS.findIndex(x=>x.id===cur)+1} / ${SCREENS.length}`;
+  document.getElementById('back').disabled=!hist.length;
+}
+function showNote(h,isHtml){const n=document.getElementById('note');n.innerHTML=isHtml?h:esc(h);}
+function go(id){if(!BY[id]||id===cur)return;hist.push(cur);cur=id;render();}
+document.getElementById('back').addEventListener('click',()=>{if(hist.length){cur=hist.pop();render();}});
+document.getElementById('restart').addEventListener('click',()=>{hist=[];cur='splash';render();});
+document.getElementById('hot').addEventListener('change',e=>document.getElementById('screen').classList.toggle('show-hot',e.target.checked));
+document.getElementById('screen').classList.add('show-hot');
+document.getElementById('groups').innerHTML=GROUPS.map(([g,ids])=>`<div class="group"><div class="eyebrow">${g}</div><div class="screen-chips">${ids.filter(i=>BY[i]).map(i=>`<button type="button" data-id="${i}">${esc(BY[i].name.replace(/^In-Game HUD - /,'HUD: '))}</button>`).join('')}</div></div>`).join('');
+document.querySelectorAll('#groups button').forEach(b=>b.addEventListener('click',()=>{go(b.dataset.id);if(window.innerWidth<900)document.querySelector('.phone').scrollIntoView({block:'start',behavior:'smooth'});}));
+render();
+
+/* ---------- Levels ---------- */
+const LV=[["First Watch",1,"Talon Roost; build on lit ground"],["Lantern Row",2,"Glowcap Lantern; territory and night creep"],["Skitter Hollow",4,"Pinecone Lobber; dormancy in the dark"],["The Lamplighter",3,"Hero Umber; mobile light; flyers"],["Burrow Gate",5,"Blockers and armour; tier 3 unlocks"],["Snuffer Grove",6,"Screech Spire; enemies attack your lights"],["Prism Glade",4,"Moonglass Prism vs dark trails"],["Ink Marsh",6,"Kill zones vs dark clouds"],["Weaver's Crossing",7,"Mastery mix, two spawns"],["Eclipse at the Hollow",8,"Boss: Nyxmaw"]];
+document.getElementById('levels').innerHTML=LV.map((l,i)=>`<div class="lv"><div class="bar" style="height:${l[1]/8*100}%"></div><div class="n">${i+1}</div></div>`).join('');
+document.getElementById('lvlist').innerHTML=LV.map((l,i)=>`<div><span>${i+1}</span><span><b>${l[0]}</b> <span class="muted">· ${l[2]}</span></span></div>`).join('');
+
+/* ---------- Team ---------- */
+const TEAM=[
+ ["Lead (Producer)","Your only contact. Turned your words into the brief, resolved conflicts between the docs, and keeps this hub.","docs/01-decisions-log.md","Decisions log",true,"#FFC15E"],
+ ["Market Analyst","Owl/night theme is fresh; lantern-reveal is not (Glowkeep, Oct 2026). Sell fairness: no energy, no pay-to-win.","docs/research/01-market-analyst.md","Market report",false,"#DDE6FF"],
+ ["Game Designer","Built the GDD around 'Light is territory': Owl vs Lightbound towers, Saboteur enemies, an eclipse boss.","docs/research/02-game-designer.md","GDD v0.1",false,"#E8A33D"],
+ ["UX/UI Designer","22 screens. Bottom-tray build flow, everything frequent in thumb reach, lit vs dark shown three colorblind-safe ways.","docs/research/03-ux-ui-designer.md","UX spec",false,"#A97BFF"],
+ ["Technical Architect","Godot 4.7. Proved a deterministic 200-enemy headless simulation in this container. CI on GitHub Actions; iOS via macOS runners.","docs/research/04-technical-architect.md","Tech plan",false,"#9AA6D6"],
+ ["Art & Audio Director","Lantern-lit flat vector, palette checked for colorblindness, legally safe AI pipeline, layered music that follows the night.","docs/research/05-art-audio-director.md","Art bible",false,"#F3E3C3"],
+ ["Economy & LiveOps","Fair Free + Supporter: opt-in ads, $4.99 one-time pack, cosmetics. Store-compliance checklist and analytics events.","docs/research/06-economy-liveops.md","Economy plan",false,"#FFE0A3"],
+ ["AI Production Ops","10-role agent roster, issue → PR → review workflow, spending caps and kill switches, your gates and Monday digest.","docs/research/07-ai-production-ops.md","Ops playbook",false,"#4A5A9E"]];
+document.getElementById('teamgrid').innerHTML=TEAM.map(([r,d,f,l,lead,c])=>`<article class="member${lead?' lead':''}"><div class="role"><span class="avatar" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 9c0-4 3.5-6 8-6s8 2 8 6v6c0 4-3.6 6-8 6s-8-2-8-6z" fill="${c}"/><circle cx="8.6" cy="10.5" r="2.6" fill="#0B1026"/><circle cx="15.4" cy="10.5" r="2.6" fill="#0B1026"/></svg></span><h3>${r}</h3></div><div class="eyebrow">${lead?'Talks to you':'AI specialist'}</div><p>${d}</p><a href="${GH+f}" target="_blank" rel="noopener">${l} ↗</a></article>`).join('');
+document.getElementById('doclinks').innerHTML=[["Studio brief","docs/00-studio-brief.md"],["Decisions log","docs/01-decisions-log.md"]].concat(TEAM.slice(1).map(t=>[t[3],t[2]])).concat([["Wireframe spec (JSON)","wireframes/screens.json"],["Palette tokens","docs/research/05-palette.json"]]).map(([n,f])=>`<li><a href="${GH+f}" target="_blank" rel="noopener">${n}</a></li>`).join('');
+
+/* ---------- Decisions ---------- */
+const DEC=[
+ [1,"Studio name","Salted Caramel Owl","Correct spelling; cleaner as a brand","d"],
+ [3,"Core hook","Light is territory","Lantern-reveal already exists; territory makes a spatial decision every wave","d"],
+ [5,"Format","Portrait, one thumb, every map on one screen","Readable on any phone; no pan, zoom or pinch","d"],
+ [6,"Darkness","Balanced and readable, never near-black","Colorblind safety needs brightness headroom","d"],
+ [7,"Enemy tone","Cute-spooky, no gore","Cozy pillar; keeps ratings at 9+ / PEGI 7","d"],
+ [8,"Hero","Umber, a named owl, no voice lines","Personality for marketing without voice-acting cost","d"],
+ [9,"Build menu","Bottom tray, tap to preview, tap again to confirm","GDD wanted a ring; a ring at the tap point sits under the thumb. UX wins","d"],
+ [11,"Currencies","Sap (in-level) · Amber (meta) · Stars (skill)","Reserve 'Glow' for the light mechanic. Nothing is sold for money","d"],
+ [13,"Business model","Fair Free + $4.99 Supporter Pack","No ad budget, so free installs matter; fairness is our selling point","d"],
+ [14,"Paywalled worlds","No; the campaign stays free","Paywalls contradict the fairness pitch","d"],
+ [15,"Kids listing","No; target audience 13+","Kids-store rules would block ads and analytics","d"],
+ [16,"Growth","Organic first","Strategy installs cost about $4–18 each in the US (snippet data)","d"],
+ [17,"Engine","Godot 4.7","Text-based, headless, free; tested in this container","d"],
+ [18,"Art","Lantern-lit flat vector","Readable, consistent, legally clean pipeline","d"],
+ [2,"Title","Hollowguard (working)","No exact match found, but the 'Hollow-' prefix is crowded. Finalize at the concept gate","o"],
+ [19,"Budget","Monthly spending cap for agents","See Your calls","o"],
+ [20,"Publisher","Organization or individual","See Your calls","o"],
+ [21,"Copyright","Human-made logo, key art, theme","See Your calls","o"]];
+document.getElementById('dec').innerHTML=DEC.map(([n,t,r,w,s])=>`<tr><td class="mono muted">${n}</td><td><b>${t}</b></td><td>${r}</td><td class="muted">${w}</td><td><span class="pill ${s}">${s==='d'?'Decided':'Needs you'}</span></td></tr>`).join('');
+
+/* ---------- Roadmap ---------- */
+const start=Date.UTC(2026,10,23), end=Date.UTC(2027,10,23), pct=d=>((Date.UTC(...d)-start)/(end-start)*100);
+const M=['Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'];
+const PH=[["P0 Pre-production",[2026,10,23],[2026,11,18],"Docs, wireframes, stack proof",true],["P1 Greybox",[2026,11,21],[2027,1,5],"Sim core, 1 level, CI live"],["P2 Vertical slice",[2027,1,8],[2027,4,7],"World 1, final art, boss"],["P3 Soft-launch prep",[2027,4,17],[2027,7,13],"Economy, ads, compliance, beta"],["P4 Soft launch",[2027,7,30],[2027,10,15],"Weekly KPI updates"]];
+const GT=[["G1 Concept",[2026,11,18],"18 Dec"],["M1 Greybox",[2027,1,5],"5 Feb",true],["G2 Slice",[2027,4,14],"14 May"],["G3 Soft launch",[2027,7,20],"20 Aug"],["G4 Launch",[2027,10,19],"~19 Nov"]];
+document.getElementById('road').innerHTML=`<div class="months">${M.map(m=>`<span>${m}</span>`).join('')}</div>`+PH.map(([n,a,b,d,now])=>`<div class="phase"><div class="seg${now?' now':''}" style="left:${pct(a)}%;width:${pct(b)-pct(a)}%"><b>${n}</b><span>${d}</span></div></div>`).join('')+`<div class="gates">${GT.map(([n,d,l,m])=>`<div class="gate${m?' m':''}" style="left:${Math.min(pct(d),95)}%"><i></i><b>${n}</b><span>${l}</span></div>`).join('')}</div>`;
+</script>

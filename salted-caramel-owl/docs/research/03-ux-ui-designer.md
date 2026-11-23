@@ -1,5 +1,8 @@
 # 03 — UX/UI Designer: One-Thumb Portrait UX for *Hollowguard*
 
+> **Lead note (v0.2):** unit placeholders renamed to the GDD canon (Talon Roost, Glowcap Lantern, Pinecone Lobber, Moonglass Prism, Screech Spire, hero Umber). The shop no longer sells currency bundles (Decisions Log #10, #11, #13).
+
+
 > Role: UX/UI Designer · Stage: pre-production · Canvas: **390×844 pt portrait** (iPhone 14/15-class)
 > Companion file: `salted-caramel-owl/wireframes/screens.json` (22 screens, clickable `goto` graph)
 

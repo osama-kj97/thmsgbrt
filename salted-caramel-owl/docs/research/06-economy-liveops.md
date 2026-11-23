@@ -1,5 +1,8 @@
 # 06 — Economy, Monetization & LiveOps (Economy & LiveOps Designer)
 
+> **Lead note (v0.2):** currency names changed. In-level **Glow → Sap**; meta **Amber Sap → Amber**. "Glow" is reserved for the light mechanic (Decisions Log #11). Model approved as recommended (#13–#15).
+
+
 > Status: research + decisions for pre-production. Date: 2026-11-23.
 > Network note: only `developer.apple.com` and `developer.android.com` could be fetched this session (Google Play policy center, PEGI, FTC, EU and trade-press hosts were blocked by the sandbox proxy). Claims from those hosts come from search-result summaries and are tagged **(unverified)**. Re-check them before soft launch.
 

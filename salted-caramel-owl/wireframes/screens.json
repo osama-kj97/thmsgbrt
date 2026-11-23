@@ -214,7 +214,7 @@
       }
     ],
     "annotations": [
-      "Step list: 1 Tap a lit spot -> 2 Build a Lantern Owl (confirm) -> 3 Watch the lit ground grow and new spots appear -> 4 Tap a dark spot: 'Too dark to build' -> 5 Start wave; a Dusk Moth dims a lantern and the ground shrinks -> 6 Light meter explained (keep the Tree's light above the danger tick) -> 7 Upgrade (late L1) -> 8 Speed 2x (L2) -> 9 Hero Dawnburst relights ground (L3).",
+      "Step list: 1 Tap a lit spot -> 2 Build a Glowcap Lantern (confirm) -> 3 Watch the lit ground grow and new spots appear -> 4 Tap a dark spot: 'Too dark to build' -> 5 Start wave; a Dusk Moth dims a lantern and the ground shrinks -> 6 Light meter explained (keep the Tree's light above the danger tick) -> 7 Upgrade (late L1) -> 8 Speed 2x (L2) -> 9 Hero Dawnburst relights ground (L3).",
       "Never more than one new concept per step; no text wall longer than 2 lines.",
       "Tutorial replayable from Settings."
     ]
@@ -235,7 +235,7 @@
           },
           {
             "type": "label",
-            "label": "Amber sap 1,240",
+            "label": "Amber 1,240",
             "goto": "shop",
             "note": "Currency pill; tap opens shop; 44pt tall"
           },
@@ -438,7 +438,7 @@
           },
           {
             "type": "card",
-            "label": "Hero: Ember the Barn Owl (change)",
+            "label": "Hero: Umber the Barn Owl (change)",
             "goto": "roster",
             "note": "Hero slot"
           },
@@ -532,11 +532,11 @@
             "type": "icon",
             "label": "Dark build spot (on dark ground, not buildable)",
             "goto": null,
-            "note": "Dashed outline + moon glyph over hatched ground; tap shows toast 'Too dark - extend light with a Lantern Owl'"
+            "note": "Dashed outline + moon glyph over hatched ground; tap shows toast 'Too dark - extend light with a Glowcap Lantern'"
           },
           {
             "type": "button",
-            "label": "Existing tower (Archer Owl L2)",
+            "label": "Existing tower (Talon Roost L2)",
             "goto": "hud_tower_selected",
             "note": "Tap to select"
           },
@@ -554,7 +554,7 @@
           },
           {
             "type": "toast",
-            "label": "Too dark to build here - extend light with a Lantern Owl",
+            "label": "Too dark to build here - extend light with a Glowcap Lantern",
             "goto": null,
             "note": "Shown when a dark spot is tapped; 2s, bottom of playfield above the tray"
           }
@@ -565,7 +565,7 @@
         "elements": [
           {
             "type": "button",
-            "label": "Hero ability: Ember's Dawnburst (cooldown ring)",
+            "label": "Hero ability: Umber's Dawnburst (cooldown ring)",
             "goto": "hud_ability_target",
             "note": "72x72pt, bottom-left; cooldown shown as ring + seconds number"
           },
@@ -615,7 +615,7 @@
         "elements": [
           {
             "type": "label",
-            "label": "Sap 150",
+            "label": "Sap 120",
             "goto": null,
             "note": "Pulses when a card's cost is previewed"
           },
@@ -655,27 +655,27 @@
           },
           {
             "type": "card",
-            "label": "Lantern Owl - 60 sap (claims light: +2 build spots)",
+            "label": "Glowcap Lantern - 80 sap (claims light: +2 build spots)",
             "goto": null,
             "note": "Card 64x88pt; tap = preview; card flips to green CONFIRM state in the same position"
           },
           {
             "type": "card",
-            "label": "Archer Owl - 70 sap",
+            "label": "Talon Roost - 70 sap",
             "goto": null,
             "note": ""
           },
           {
             "type": "card",
-            "label": "Thornspitter - 90 sap",
+            "label": "Pinecone Lobber - 110 sap",
             "goto": null,
             "note": ""
           },
           {
             "type": "card",
-            "label": "Moonbell - 120 sap (locked: not enough sap)",
+            "label": "Moonglass Prism - 140 sap (locked: not enough sap)",
             "goto": null,
-            "note": "Unaffordable = dimmed + lock icon + 'need 120'; still previewable"
+            "note": "Unaffordable = dimmed + lock icon + 'need 140'; still previewable"
           },
           {
             "type": "button",
@@ -737,7 +737,7 @@
           },
           {
             "type": "label",
-            "label": "Archer Owl - Level 2 (pips 2/3)",
+            "label": "Talon Roost - Level 2 (pips 2/3)",
             "goto": null,
             "note": ""
           },
@@ -874,7 +874,7 @@
   {
     "id": "hud_ability_target",
     "name": "In-Game HUD - Hero Ability Targeting",
-    "purpose": "Aim Ember's Dawnburst (a burst of light that relights ground and stuns shadows) with one thumb.",
+    "purpose": "Aim Umber's Dawnburst (a burst of light that relights ground and stuns shadows) with one thumb.",
     "regions": [
       {
         "zone": "middle",
@@ -1005,15 +1005,15 @@
           },
           {
             "type": "list",
-            "label": "Rewards: +180 amber sap, Codex entry: Dusk Moth",
+            "label": "Rewards: +180 Amber, Umber +1 XP level, Codex entry: Dusk Moth",
             "goto": null,
             "note": ""
           },
           {
             "type": "button",
-            "label": "Double sap (watch ad)",
+            "label": "Double Amber (watch ad)",
             "goto": null,
-            "note": "Opt-in rewarded ad, secondary styling; never auto-plays"
+            "note": "Opt-in rewarded ad, secondary styling; never auto-plays; capped per day; Supporter Pack owners get it automatically"
           }
         ]
       },
@@ -1073,7 +1073,7 @@
           },
           {
             "type": "card",
-            "label": "Try: guard Lantern B1 with an Archer Owl set to 'Snuffer' targeting",
+            "label": "Try: guard Lantern B1 with an Talon Roost set to 'Snuffer' targeting",
             "goto": null,
             "note": "One actionable tip"
           },
@@ -1129,7 +1129,7 @@
           },
           {
             "type": "label",
-            "label": "Sap 1,240",
+            "label": "Amber 1,240",
             "goto": "shop",
             "note": ""
           }
@@ -1146,7 +1146,7 @@
           },
           {
             "type": "card",
-            "label": "Ember the Barn Owl - Lv 3 (equipped)",
+            "label": "Umber the Barn Owl - Lv 3 (equipped)",
             "goto": "hero_detail",
             "note": ""
           },
@@ -1183,7 +1183,7 @@
   {
     "id": "hero_detail",
     "name": "Hero Detail",
-    "purpose": "See an owl's abilities, level it up with sap, choose a cosmetic, equip.",
+    "purpose": "See Umber's abilities, XP progress and talents; choose a cosmetic.",
     "regions": [
       {
         "zone": "top",
@@ -1201,13 +1201,13 @@
         "elements": [
           {
             "type": "card",
-            "label": "Ember portrait (idle anim) + role 'Light keeper'",
+            "label": "Umber portrait (idle anim) + role 'Light keeper'",
             "goto": null,
             "note": ""
           },
           {
             "type": "list",
-            "label": "Abilities: Dawnburst (active: relights a patch of ground), Night Eyes (passive: nearby owls hit harder in darkness)",
+            "label": "Abilities: Lantern-staff (passive: personal light r1.5 that moves with him), Dawnburst (lights r3 for 8s), Silent Dive (dive + stun)",
             "goto": null,
             "note": "Each with icon + one-line effect"
           },
@@ -1229,10 +1229,10 @@
         "zone": "bottom",
         "elements": [
           {
-            "type": "button",
-            "label": "Level up - 300 sap",
+            "type": "bar",
+            "label": "XP 2,400 / 3,000 - next talent pick at Lv 3",
             "goto": null,
-            "note": "Primary, two-tap confirm"
+            "note": "Hero levels come from play (XP), never from currency"
           },
           {
             "type": "button",
@@ -1261,7 +1261,7 @@
           },
           {
             "type": "label",
-            "label": "Sap 1,240",
+            "label": "Amber 1,240",
             "goto": "shop",
             "note": ""
           }
@@ -1278,13 +1278,13 @@
           },
           {
             "type": "sheet",
-            "label": "Node detail sheet: 'Brighter Wick: +15% light radius' - 200 sap",
+            "label": "Node detail sheet: 'Brighter Wick: +15% light radius' - 200 Amber",
             "goto": null,
             "note": "Opens on node tap; Research button in sheet"
           },
           {
             "type": "button",
-            "label": "Research (200 sap)",
+            "label": "Research (200 Amber)",
             "goto": null,
             "note": "Primary inside sheet, bottom; two-tap confirm"
           }
@@ -1295,7 +1295,7 @@
         "elements": [
           {
             "type": "list",
-            "label": "Tower selector chips: Lantern / Archer / Thornspitter / Moonbell / Gust / Rootwall",
+            "label": "Tower selector chips: Lantern / Archer / Pinecone Lobber / Screech Spire / Gust / Rootwall",
             "goto": null,
             "note": "Horizontally scrolling chips 64x56pt, placed at bottom for reach"
           },
@@ -1322,14 +1322,14 @@
   {
     "id": "shop",
     "name": "Shop",
-    "purpose": "Fair-F2P store: cosmetics, sap bundles, optional pass, rewarded-ad freebie. No loot boxes.",
+    "purpose": "Fair store: cosmetics and the one-time Supporter Pack. Nothing that affects power is ever sold.",
     "regions": [
       {
         "zone": "top",
         "elements": [
           {
             "type": "label",
-            "label": "Sap 1,240",
+            "label": "Amber 1,240",
             "goto": null,
             "note": ""
           },
@@ -1346,9 +1346,9 @@
         "elements": [
           {
             "type": "card",
-            "label": "Free: watch an ad for 50 sap (3/day)",
+            "label": "Free: watch an ad for +50 Amber (3/day)",
             "goto": null,
-            "note": "Opt-in; ATT prompt shown before first ad on iOS"
+            "note": "Opt-in only. Non-personalized ads at launch, so no tracking (ATT) prompt"
           },
           {
             "type": "list",
@@ -1358,15 +1358,15 @@
           },
           {
             "type": "card",
-            "label": "Hollow Pass (optional premium track)",
+            "label": "Supporter Pack - $4.99 one-time",
             "goto": null,
-            "note": "Scope per Economy designer"
+            "note": "Removes ad prompts, grants ad rewards automatically, cloak + soundtrack. Gives no power"
           },
           {
-            "type": "list",
-            "label": "Sap bundles",
+            "type": "label",
+            "label": "Never sold: towers, power, Amber, Sap, Stars, levels",
             "goto": null,
-            "note": ""
+            "note": "Shown in-store as a fairness promise"
           },
           {
             "type": "sheet",
@@ -1396,7 +1396,8 @@
     ],
     "annotations": [
       "No timers, no fake discounts, no randomized paid rewards. Clear real-money prices.",
-      "Content and prices are placeholders for the Economy & LiveOps Designer."
+      "Content and prices are placeholders for the Economy & LiveOps Designer.",
+      "Lead ruling 11/13: no currency bundles, no pass at launch (pass only once 3+ worlds exist, never expiring)."
     ]
   },
   {
